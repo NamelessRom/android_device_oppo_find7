@@ -1,4 +1,6 @@
 #
 # system.prop for find7
 #
+
 ro.sf.lcd_density=480
+rild.libpath=/system/vendor/libril-qc-qmi-1.so
