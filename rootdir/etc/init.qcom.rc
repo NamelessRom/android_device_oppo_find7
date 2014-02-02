@@ -1,5 +1,5 @@
 #
-# Copyright 2013 The Android Open Source Project
+# Copyright 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-import init.hammerhead.usb.rc
+import init.qcom.usb.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -42,27 +42,28 @@ on init
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
-on fs
-    mount_all ./fstab.hammerhead
-    setprop ro.crypto.fuse_sdcard true
+on early-boot
     write /sys/kernel/boot_adsp/boot 1
 
-on early-boot
-    # set RLIMIT_MEMLOCK to 64MB
-    setrlimit 8 67108864 67108864
+on fs
+    mount_all ./fstab.qcom
+    setprop ro.crypto.fuse_sdcard true
 
 on boot
-    # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
-    write /sys/module/wakelock/parameters/debug_mask 7
-
     # bluetooth
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/module/hci_smd/parameters/hcismd_set
+    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
+    chown bluetooth net_bt_stack /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
 
     # bluetooth LPM
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
+    chown bluetooth net_bt_stack /sys/module/hci_uart/parameters/ath_lpm
+    chown bluetooth net_bt_stack /sys/module/hci_uart/parameters/ath_btwrite
+    chmod 0660 /sys/module/hci_uart/parameters/ath_lpm
+    chmod 0660 /sys/module/hci_uart/parameters/ath_btwrite
 
     #bluetooth UART dev
     chown bluetooth net_bt_stack /sys/devices/platform/msm_serial_hs.0/clock
@@ -78,6 +79,22 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    #hsic
+    chown system system /sys/bus/platform/drivers/msm_hsic_host/bind
+    chown system system /sys/bus/platform/drivers/msm_hsic_host/unbind
+    chmod 0200 /sys/bus/platform/drivers/msm_hsic_host/bind
+    chmod 0200 /sys/bus/platform/drivers/msm_hsic_host/unbind
+
+    #charger
+    chown root system /sys/module/qpnp_charger/parameters/charger_monitor
+    chown root system /sys/class/power_supply/battery/input_current_max
+    chown root system /sys/class/power_supply/battery/input_current_trim
+    chown root system /sys/class/power_supply/battery/voltage_min
+    chmod 0644 /sys/module/qpnp_charger/parameters/charger_monitor
+    chmod 0644 /sys/class/power_supply/battery/input_current_max
+    chmod 0644 /sys/class/power_supply/battery/input_current_trim
+    chmod 0644 /sys/class/power_supply/battery/voltage_min
+
     # Camera Recording
     mkdir /dev/video
     symlink /dev/video32 /dev/video/venus_dec
@@ -88,17 +105,6 @@ on boot
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
-
-    # Assign TCP buffer thresholds to be ceiling value of technology maximums
-    # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  2097152
-    write /proc/sys/net/core/wmem_max  2097152
-
-    # Define TCP buffer sizes
-    # ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax
-    setprop net.tcp.buffersize.hsdpa    4094,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hspa     4094,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hsupa    4094,87380,704512,4096,16384,110208
 
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -129,21 +135,12 @@ on boot
     #venus
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
 
-    # leds
-    chown system system /sys/class/leds/red/on_off_ms
-    chown system system /sys/class/leds/green/on_off_ms
-    chown system system /sys/class/leds/blue/on_off_ms
-    chown system system /sys/class/leds/red/rgb_start
-
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
 
     # NFC: create data/nfc for nv storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
-
-    # wifi
-    chown wifi system /persist/wifi
 
     #  bluetooth
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
@@ -162,10 +159,6 @@ on post-fs-data
     mkdir /data/misc/sensors
     chmod 775 /data/misc/sensors
 
-    # Sensor
-    mkdir /persist/sensors
-    chmod 775 /persist/sensors
-
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
@@ -173,16 +166,40 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
-    # communicate with mpdecision and thermald
-    mkdir /dev/socket/mpdecision 0770 system system
-    chmod 2770 /dev/socket/mpdecision
+    # Create the directories used by CnE subsystem
+    mkdir /data/connectivity 0771 system system
+    chown system system /data/connectivity
 
-    # save rtc time offsets
-    mkdir /data/system/time/ 0700 system system
+    mkdir /data/connectivity/nsrm 0771 system system
+    chown system system /data/connectivity/nsrm
 
-    # Ecc_Handler qcril.db
-    mkdir /data/misc/radio 0770 radio radio
-    symlink /system/etc/qcril.db /data/misc/radio/qcril.db
+    mkdir /data/connectivity/nsrm 0771 system system
+    chown system system /data/connectivity/nsrm
+
+    #Create directories for gpsone_daemon services
+    mkdir /data/misc/gpsone_d 0770 system gps
+
+    #Create directories for QuIPS
+    mkdir /data/misc/quipc 0770 gps system
+
+    #Create directories for Location services
+    mkdir /data/misc/location 0770 gps gps
+    mkdir /data/misc/location/mq 0770 gps gps
+    mkdir /data/misc/location/xtwifi 0770 gps gps
+
+    # Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
+
+    # Enable Wifi
+    start wcnss-service
+    /system/bin/sh cp /system/etc/wifi/WCNSS_qcom.cfg.ini /persist/WCNSS_qcom_cfg.ini
+    chown system wifi /persist/WCNSS_qcom_cfg.ini
+    chmod 0660 /persist/WCNSS_qcom_cfg.ini
+    /system/bin/sh cp /system/etc/wifi/WCNSS_qcom_wlan_nv.bin /persist/WCNSS_qcom_wlan_nv.bin
+    write /dev/wcnss_wlan 1
+    write /sys/devices/fb000000.qcom,wcnss-wlan/serial_number ${ro.serialno}
+
+    setprop qcom.audio.init complete
 
     setprop vold.post_fs_data_done 1
 
@@ -191,21 +208,6 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
-
-    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
-    #write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
-    #write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
-    #write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
-    #write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    #write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    #write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
-    #write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
-    #write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
-    #write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
-    #write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 3
-    #write /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq 960000
-    #write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 960000
-    #write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
 
     write /sys/class/devfreq/qcom,cpubw.30/governor "cpubw_hwmon"
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
@@ -442,12 +444,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input
 
-service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
-    class main
-    user bluetooth
-    group system bluetooth
-    oneshot
-
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B \
         -o /data/data/com.android.shell/files/bugreports/bugreport
@@ -462,22 +458,10 @@ service mpdecision /system/bin/mpdecision --avg_comp
    group root
    disabled
 
-service ssr_ramdump /system/bin/subsystem_ramdump -m -t emmc
-    class main
-    disabled
-    user root
-    group root
-
-service thermal-engine /system/bin/thermal-engine-hh
+service thermal-engine /system/bin/thermal-engine
    class main
    user root
    group root
-
-service vss_init /vendor/bin/vss_init
-    class late_start
-    user root
-    group root
-    disabled
 
 service time_daemon /system/bin/time_daemon
     class late_start
@@ -498,3 +482,56 @@ service qrngp /system/bin/qrngp
 
 on property:sys.boot_completed=1
     start qrngp
+
+# Additional Find7 services
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+on property:vold.decrypt=trigger_restart_framework
+    start config_bluetooth
+
+service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+    class core
+    user root
+    oneshot
+
+service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+on property:bluetooth.hciattach=true
+    start hciattach
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
+
+service charger_monitor /system/bin/charger_monitor
+    class late_start
+    user system
+    group system
+
+#Start the qcom-system-daemon service
+service qcomsysd /system/bin/qcom-system-daemon
+   class main
+
+service adsprpcd /system/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service audiod /system/bin/audiod
+   class late_start
+   user system
+   group system
+
+service wcnss-service /system/bin/wcnss_service
+    class late_start
+    user system
+    group system wifi
+    disabled
+    oneshot
