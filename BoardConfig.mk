@@ -90,7 +90,7 @@ TARGET_USES_CM_POWERHAL := true
 TARGET_POWERHAL_NO_TOUCH_BOOST := true
 
 # Radio
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
