@@ -1,0 +1,179 @@
+# Misc executables
+bin/btnvtool
+bin/ds_fmc_appd
+bin/hci_qcomm_init
+bin/mpdecision
+
+# ADSP
+vendor/lib/libadsprpc.so
+
+# Audio
+etc/Bluetooth_cal.acdb
+etc/General_cal.acdb
+etc/Global_cal.acdb
+etc/Handset_cal.acdb
+etc/Hdmi_cal.acdb
+etc/Headset_cal.acdb
+etc/Speaker_cal.acdb
+vendor/lib/libacdbloader.so
+vendor/lib/libacdbrtac.so
+vendor/lib/libadiertac.so
+vendor/lib/libaudcal.so
+vendor/lib/libcsd-client.so
+
+# Audio firmware
+etc/firmware/audience-es325-fw.bin
+
+# Camera
+bin/mm-qcamera-daemon
+lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so
+vendor/lib/libchromatix_imx214_common.so
+vendor/lib/libchromatix_imx214_preview.so
+vendor/lib/libchromatix_imx214_snapshot.so
+vendor/lib/libchromatix_ov5648_common.so
+vendor/lib/libchromatix_ov5648_default_video.so
+vendor/lib/libchromatix_ov5648_preview.so
+vendor/lib/libchromatix_ov5648_zsl.so
+vendor/lib/libmmcamera2_c2d_module.so
+vendor/lib/libmmcamera2_cpp_module.so
+vendor/lib/libmmcamera2_iface_modules.so
+vendor/lib/libmmcamera2_imglib_modules.so
+vendor/lib/libmmcamera2_isp_modules.so
+vendor/lib/libmmcamera2_pproc_modules.so
+vendor/lib/libmmcamera2_sensor_modules.so
+vendor/lib/libmmcamera2_stats_algorithm.so
+vendor/lib/libmmcamera2_stats_modules.so
+vendor/lib/libmmcamera2_vpe_module.so
+vendor/lib/libmmcamera2_wnr_module.so
+vendor/lib/libmmcamera_faceproc.so
+vendor/lib/libmmcamera_hdr_gb_lib.so
+vendor/lib/libmmcamera_hdr_lib.so
+vendor/lib/libmmcamera_imglib.so
+vendor/lib/libmmcamera_imx214.so
+vendor/lib/libmmcamera_ov5648.so
+vendor/lib/libmmcamera_tintless_algo.so
+vendor/lib/libmmcamera_tintless_bg_pca_algo.so
+vendor/lib/libmmcamera_tuning.so
+vendor/lib/libmmcamera_wavelet_lib.so
+vendor/lib/libmmipl.so
+vendor/lib/libmmjpeg.so
+vendor/lib/libmmqjpeg_codec.so
+vendor/lib/liboemcamera.so
+
+# Camera firmware
+etc/firmware/venus.b00
+etc/firmware/venus.b01
+etc/firmware/venus.b02
+etc/firmware/venus.b03
+etc/firmware/venus.b04
+etc/firmware/venus.mbn
+etc/firmware/venus.mdt
+
+# DRM
+bin/qseecomd
+vendor/lib/libdrmdiag.so
+vendor/lib/libdrmfs.so
+vendor/lib/libdrmtime.so
+vendor/lib/libQSEEComAPI.so
+
+# GPS
+vendor/lib/libgeofence.so
+lib/libloc_api_v02.so
+
+# Graphics
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libC2D2.so
+vendor/lib/libc2d30.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libCB.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-a3xx.so
+vendor/lib/libsc-a3xx.so
+
+# Graphics firmware
+etc/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw
+
+# Media
+vendor/lib/libI420colorconvert.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
+vendor/lib/libmm-color-convertor.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libExtendedExtractor.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxAmrwbplusDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libOmxWmaDec.so
+
+# Misc
+vendor/lib/libqc-opt.so
+
+# Misc firmware
+etc/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw
+
+# NFC
+etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
+
+# Postprocessing
+app/PPPreference.apk
+bin/mm-pp-daemon
+vendor/lib/libmm-abl.so
+vendor/lib/libmm-abl-oem.so
+
+# Qualcomm framework
+bin/irsc_util
+vendor/lib/libdsi_netctrl.so
+vendor/lib/libdsutils.so
+vendor/lib/libqcci_legacy.so
+vendor/lib/libqdi.so
+vendor/lib/libqdp.so
+vendor/lib/libqmi.so
+vendor/lib/libqmiservices.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_client_qmux.so
+vendor/lib/libqmi_common_so.so
+vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_csvt_srvc.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmiservices.so
+
+# Radio
+app/qcrilmsgtunnel.apk
+app/shutdownlistener.apk
+bin/bridgemgrd
+bin/netmgrd
+bin/qmuxd
+bin/rmt_storage
+etc/permissions/qcnvitems.xml
+etc/permissions/qcrilhook.xml
+framework/qcnvitems.jar
+framework/qcrilhook.jar
+vendor/lib/libnetmgr.so
+vendor/lib/libril-qc-qmi-1.so
+vendor/lib/libril-qcril-hook-oem.so
+
+# Sensors
+bin/sensors.qcom
+vendor/lib/hw/sensors.msm8974.so
+vendor/lib/libAKM8963.so
+vendor/lib/libsensor1.so
+vendor/lib/libsensor_reg.so
+vendor/lib/libsensor_user_cal.so
+
+# Thermal
+bin/thermald
+bin/thermal-engine
+vendor/lib/libthermalclient.so
+
+# Time services
+bin/time_daemon
+vendor/lib/libtime_genoff.so
