@@ -190,15 +190,6 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-    # Enable Wifi
-    start wcnss-service
-    /system/bin/sh cp /system/etc/wifi/WCNSS_qcom.cfg.ini /persist/WCNSS_qcom_cfg.ini
-    chown system wifi /persist/WCNSS_qcom_cfg.ini
-    chmod 0660 /persist/WCNSS_qcom_cfg.ini
-    /system/bin/sh cp /system/etc/wifi/WCNSS_qcom_wlan_nv.bin /persist/WCNSS_qcom_wlan_nv.bin
-    write /dev/wcnss_wlan 1
-    write /sys/devices/fb000000.qcom,wcnss-wlan/serial_number ${ro.serialno}
-
     setprop qcom.audio.init complete
 
     setprop vold.post_fs_data_done 1
@@ -424,8 +415,8 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 
 service qseecomd /system/bin/qseecomd
     class late_start
-    user system
-    group system
+    user root
+    group root
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
@@ -533,5 +524,4 @@ service wcnss-service /system/bin/wcnss_service
     class late_start
     user system
     group system wifi
-    disabled
     oneshot
