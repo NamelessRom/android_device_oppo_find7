@@ -75,6 +75,11 @@ vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libQSEEComAPI.so
+vendor/lib/librpmb.so
+vendor/lib/libssd.so
+vendor/lib/libsecureui.so
+vendor/lib/lib-sec-disp.so
+vendor/lib/libStDrvInt.so
 
 # GPS
 vendor/lib/libgeofence.so
@@ -88,12 +93,15 @@ vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libC2D2.so
+vendor/lib/libCB.so
 vendor/lib/libc2d30.so
 vendor/lib/libc2d30-a3xx.so
-vendor/lib/libCB.so
 vendor/lib/libgsl.so
-vendor/lib/libllvm-a3xx.so
+vendor/lib/libllvm-qcom.so
 vendor/lib/libsc-a3xx.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/librs_adreno.so
+vendor/lib/librs_adreno_sha1.so
 
 # Graphics firmware
 etc/firmware/a330_pfp.fw
@@ -115,7 +123,6 @@ vendor/lib/libOmxWmaDec.so
 # Misc
 vendor/lib/libdiag.so
 vendor/lib/libqc-opt.so
-vendor/lib/librpmb.so
 
 # Misc firmware
 etc/firmware/cpp_firmware_v1_1_1.fw
