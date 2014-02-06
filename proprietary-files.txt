@@ -113,7 +113,9 @@ vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
 
 # Misc
+vendor/lib/libdiag.so
 vendor/lib/libqc-opt.so
+vendor/lib/librpmb.so
 
 # Misc firmware
 etc/firmware/cpp_firmware_v1_1_1.fw
@@ -132,7 +134,9 @@ vendor/lib/libmm-abl-oem.so
 # Qualcomm framework
 bin/irsc_util
 vendor/lib/libdsi_netctrl.so
+vendor/lib/libdsnetutils.so
 vendor/lib/libdsutils.so
+vendor/lib/libidl.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
