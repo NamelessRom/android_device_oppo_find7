@@ -181,7 +181,6 @@ vendor/lib/libsensor_reg.so
 vendor/lib/libsensor_user_cal.so
 
 # Thermal
-bin/thermald
 bin/thermal-engine
 vendor/lib/libthermalclient.so
 
