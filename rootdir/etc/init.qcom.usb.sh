@@ -47,8 +47,8 @@ case "$serialno" in
     echo "$serialno" > /sys/class/android_usb/android0/iSerial
 esac
 
-chown root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
-chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
+chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
+chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
 #
 # Allow persistent usb charging disabling
@@ -88,99 +88,25 @@ echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
 usb_config=`getprop persist.sys.usb.config`
 case "$usb_config" in
     "" | "adb") #USB persist config not set, select default configuration
-        case $target in
-            "msm8960" | "msm8974" | "msm8226" | "msm8610" | "apq8084")
-                case "$baseband" in
-                    "mdm")
-                         setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
-                    ;;
-                    "sglte")
-                         setprop persist.sys.usb.config diag,diag_qsc,serial_smd,serial_tty,serial_hsuart,rmnet_hsuart,mass_storage,adb
-                    ;;
-                    "dsda" | "sglte2")
-                         setprop persist.sys.usb.config diag,diag_mdm,diag_qsc,serial_hsic,serial_hsuart,rmnet_hsic,rmnet_hsuart,mass_storage,adb
-                    ;;
-                    "dsda2")
-                         setprop persist.sys.usb.config diag,diag_mdm,diag_mdm2,serial_hsic,serial_hsusb,rmnet_hsic,rmnet_hsusb,mass_storage,adb
-                    ;;
-                    *)
-#ifndef VENDOR_EDIT  
-#jiangyg@pm modify for usb config in ftm mode 2013-11-25                  
-                         #setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
-#else                 
-                         ftmmode=`getprop ro.wandrfmode`
-                         case "$ftmmode" in
-                             "1")
-                                  setprop persist.sys.usb.config diag,adb
-                             ;;
-                             "2")
-                                  setprop persist.sys.usb.config diag,adb
-                             ;;
-                             *)
-							  	 #ifdef VENDOR_EDIT                 
-								 #wangw@OnLineRD.DeviceService, 2013/12/13, Modify usb config to make adb can use
-							  	 adbsecure=`getprop ro.adb.secure` 
-								 if  [ "$adbsecure" -ne "1" ]; 
-								 then
-				  			   	  	setprop persist.sys.usb.config mass_storage,adb
-								 else
-									setprop persist.sys.usb.config mass_storage
-								 fi
-								 #else
-								 # setprop persist.sys.usb.config mass_storage
-								 #endif
-                             ;;
-                         esac
-#endif                         
-                    ;;
-                esac
-            ;;
-            "msm7627a")
-                setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_smd,mass_storage,adb
-            ;;
-            * )
-                case "$baseband" in
-                    "svlte2a")
-                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_smd,rmnet_smd_sdio,mass_storage,adb
-                    ;;
-                    "csfb")
-                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_tty,rmnet_sdio,mass_storage,adb
-                    ;;
-                    *)   
-                         setprop persist.sys.usb.config diag,serial_tty,serial_tty,rmnet_smd,mass_storage,adb
-                    ;;
-                esac
-            ;;
-        esac
+      case "$baseband" in
+          "mdm")
+               setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+          ;;
+          "sglte")
+               setprop persist.sys.usb.config diag,diag_qsc,serial_smd,serial_tty,serial_hsuart,rmnet_hsuart,mass_storage,adb
+          ;;
+          "dsda" | "sglte2")
+               setprop persist.sys.usb.config diag,diag_mdm,diag_qsc,serial_hsic,serial_hsuart,rmnet_hsic,rmnet_hsuart,mass_storage,adb
+          ;;
+          "dsda2")
+               setprop persist.sys.usb.config diag,diag_mdm,diag_mdm2,serial_hsic,serial_hsusb,rmnet_hsic,rmnet_hsusb,mass_storage,adb
+          ;;
+          *)
+               setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
+          ;;
+      esac
     ;;
-    * )
-#ifdef VENDOR_EDIT  
-#jiangyg@pm modify for usb config in ftm mode 2013-11-25
-        ftmmode=`getprop ro.wandrfmode`
-        case "$ftmmode" in
-           "1")
-              setprop persist.sys.usb.config diag,adb
-           ;;
-           "2")
-              setprop persist.sys.usb.config diag,adb
-           ;;
-           * )
-				 #ifdef VENDOR_EDIT                 
-				 #wangw@OnLineRD.DeviceService, 2013/12/13, Modify usb config to make adb can use
-		      	 adbsecure=`getprop ro.adb.secure` 
-			     if  [ "$adbsecure" -ne "1" ]; 
-				 then
-  			   	  	setprop persist.sys.usb.config mass_storage,adb
-			     else
-					setprop persist.sys.usb.config mass_storage
-				 fi
-				 #else
-				 # setprop persist.sys.usb.config mass_storage
-				 #endif
-            ;;
-        esac
-#endif  
-  ;; #USB persist config exists, do nothing
+    * ) ;; #USB persist config exists, do nothing
 esac
 
 #
@@ -190,7 +116,7 @@ target=`getprop ro.product.device`
 cdromname="/system/etc/cdrom_install.iso"
 cdromenable=`getprop persist.service.cdrom.enable`
 case "$target" in
-        "msm7627a" | "msm8226" | "msm8610")
+        "msm8226" | "msm8610")
                 case "$cdromenable" in
                         0)
                                 echo "" > /sys/class/android_usb/android0/f_mass_storage/lun0/file
@@ -201,20 +127,27 @@ case "$target" in
                                 ;;
                 esac
                 ;;
-#ifdef VENDOR_EDIT                 
-#Zhilong.Zhang@OnlineRd.Driver, 2013/10/12, Add for support CD-ROM          
-        *)
-                echo "/dev/block/mmcblk0p24" > /sys/class/android_usb/android0/f_mass_storage/lun/file
-        ;;
-#endif        
 esac
 
 #
-# Select USB BAM - 2.0 or 3.0
+# Do target specific things
 #
 case "$target" in
     "msm8974")
+# Select USB BAM - 2.0 or 3.0
         echo ssusb > /sys/bus/platform/devices/usb_bam/enable
+    ;;
+    "apq8084")
+	if [ "$baseband" == "apq" ]; then
+		echo "msm_hsic_host" > /sys/bus/platform/drivers/xhci_msm_hsic/unbind
+	fi
+    ;;
+    "msm8226")
+         if [ -e /sys/bus/platform/drivers/msm_hsic_host ]; then
+             if [ ! -L /sys/bus/usb/devices/1-1 ]; then
+                 echo msm_hsic_host > /sys/bus/platform/drivers/msm_hsic_host/unbind
+             fi
+         fi
     ;;
 esac
 
@@ -233,7 +166,7 @@ case "$baseband" in
         esac
         echo 1 > /sys/module/rmnet_usb/parameters/rmnet_data_init
         # Allow QMUX daemon to assign port open wait time
-        chown radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+        chown -h radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     ;;
     "dsda2")
           echo 2 > /sys/module/rmnet_usb/parameters/no_rmnet_devs
@@ -257,7 +190,6 @@ case "$baseband" in
           esac
           echo 1 > /sys/module/rmnet_usb/parameters/rmnet_data_init
           # Allow QMUX daemon to assign port open wait time
-          chown radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+          chown -h radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     ;;
 esac
-
