@@ -190,6 +190,9 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
+    # Wifi firmware copy
+    exec /system/bin/sh /system/etc/init.qcom.wifi.sh
+
     setprop qcom.audio.init complete
 
     setprop vold.post_fs_data_done 1

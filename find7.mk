@@ -26,7 +26,8 @@ TARGET_SCREEN_WIDTH := 1080
 # Config scripts
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
-    init.qcom.usb.sh
+    init.qcom.usb.sh \
+    init.qcom.wifi.sh
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -143,7 +144,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:persist/WCNSS_qcom_wlan_nv.bin
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
