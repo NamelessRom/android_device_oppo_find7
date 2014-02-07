@@ -281,13 +281,6 @@
     <!-- Extra Oppo things -->
     <ctl name="SLIM_0_RX Format" value="S16_LE" />
     <ctl name="SPKR Enable" value="0" />
-    <ctl name="Set Power State" value="Sleep" />
-
-    <!-- ES325 -->
-    <ctl name="ES325 RX1 Enable" value="0" />
-    <ctl name="ES325 TX1 Enable" value="0" />
-    <ctl name="ES325 RX2 Enable" value="0" />
-    <ctl name="ES325 Presets" value="0" />
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="deep-buffer-playback">
