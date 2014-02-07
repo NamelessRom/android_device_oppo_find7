@@ -713,15 +713,11 @@
     </path>
 
     <path name="dmic1">
-        <ctl name="Set Power State" value="Active" />
-        <ctl name="ES325 TX1 Enable" value="1" />
-        <ctl name="ES325 Presets" value="1052" />
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1"/>
         <ctl name="SLIM_0_TX Channels" value="One" />
-        <ctl name="SLIM TX7 MUX" value="DEC4" />
-        <ctl name="DEC4 MUX" value="ADC3" />
-        <ctl name="ADC3 Volume" value="100" />
-        <ctl name="DEC4 Volume" value="68" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="DEC7 MUX" value="DMIC1" />
+        <ctl name="IIR1 INP1 MUX" value="DEC7" />
     </path>
 
     <path name="speaker">
@@ -849,7 +845,6 @@
         <ctl name="CLASS_H_DSM MUX" value="DSM_HPHL_RX1" />
         <ctl name="HPHL DAC Switch" value="1" />
         <ctl name="COMP1 Switch" value="1" />
-        <ctl name="SLIM_0_RX Format" value="S24_LE" />
     </path>
 
     <path name="headset-mic">
@@ -870,8 +865,6 @@
     <path name="voice-handset">
         <path name="sidetone-handset" />
         <path name="handset" />
-        <ctl name="Set Power State" value="Active" />
-        <ctl name="ES325 RX1 Enable" value="1" />
     </path>
 
     <path name="voice-handset-tmus">
@@ -880,9 +873,6 @@
 
     <path name="voice-speaker">
         <path name="speaker" />
-        <ctl name="Set Power State" value="Active" />
-        <ctl name="ES325 RX1 Enable" value="1" />
-        <ctl name="ES325 Presets" value="1151" />
     </path>
 
     <path name="voice-speaker-mic">
@@ -892,10 +882,6 @@
     <path name="voice-headphones">
         <path name="sidetone-headphones" />
         <path name="headphones" />
-        <ctl name="Set Power State" value="Active" />
-        <ctl name="ES325 RX1 Enable" value="1" />
-        <ctl name="ES325 RX2 Enable" value="1" />
-        <ctl name="ES325 Presets" value="1155" />
     </path>
 
     <path name="voice-headset-mic">
@@ -905,14 +891,8 @@
 
     <path name="speaker-and-headphones">
         <path name="headphones" />
-        <ctl name="RX3 MIX1 INP1" value="RX1" />
-        <ctl name="RDAC5 MUX" value="DEM3_INV" />
-        <ctl name="LINEOUT1 Volume" value="68" />
-        <ctl name="LINEOUT3 Volume" value="68" />
-        <ctl name="RX3 Digital Volume" value="68" />
-        <ctl name="RX4 Digital Volume" value="68" />
-        <ctl name="SPKR Enable" value="1" />
-        <ctl name="SLIM_0_RX Format" value="S24_LE" />
+        <ctl name="DAC1 Switch" value="1" />
+        <ctl name="RX7 MIX1 INP1" value="RX1" />
     </path>
 
     <path name="speaker-and-headphones-fluid">
@@ -1118,19 +1098,12 @@
 
     <!-- Dual MIC devices -->
     <path name="speaker-dmic-endfire">
-        <ctl name="Set Power State" value="Active" />
-        <ctl name="ES325 TX1 Enable" value="1" />
-        <ctl name="ES325 Presets" value="1179" />
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
-        <ctl name="SLIM TX7 MUX" value="DEC4" />
-        <ctl name="DEC4 MUX" value="ADC3" />
-        <ctl name="ADC3 Volume" value="100" />
-        <ctl name="DEC4 Volume" value="68" />
-        <ctl name="SLIM TX8 MUX" value="DEC3" />
-        <ctl name="DEC3 MUX" value="ADC4" />
-        <ctl name="ADC4 Volume" value="100" />
-        <ctl name="DEC3 Volume" value="68" />
+        <ctl name="SLIM TX7 MUX" value="DEC7" />
+        <ctl name="DEC7 MUX" value="DMIC1" />
+        <ctl name="SLIM TX8 MUX" value="DEC10" />
+        <ctl name="DEC10 MUX" value="DMIC3" />
         <ctl name="SLIM_0_TX Channels" value="Two" />
     </path>
 
