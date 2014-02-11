@@ -157,9 +157,10 @@ on post-fs-data
     # Create directory used by sensor subsystem
     mkdir /data/system 0755 system system
     mkdir /data/system/sensors
-    chmod 655 /data/system/sensors
+    chmod 755 /data/system/sensors
     write /data/system/sensors/settings 1
-    chmod 660 /data/system/sensors/settings
+    chmod 664 /data/system/sensors/settings
+    chown system /data/system/sensors/settings
 
     # AKM setting data
     mkdir /data/misc/sensors
