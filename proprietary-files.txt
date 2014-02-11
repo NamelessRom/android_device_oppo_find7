@@ -45,8 +45,6 @@ vendor/lib/libchromatix_ov5648_preview.so
 vendor/lib/libchromatix_ov5648_zsl.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
-vendor/lib/libllvm-a3xx.so
-vendor/lib/libllvm-arm.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_iface_modules.so
@@ -71,7 +69,6 @@ vendor/lib/libmmipl.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
-vendor/lib/libOpenCL.so
 
 # Camera firmware
 etc/firmware/venus.b00
@@ -110,7 +107,10 @@ vendor/lib/libCB.so
 vendor/lib/libc2d30.so
 vendor/lib/libc2d30-a3xx.so
 vendor/lib/libgsl.so
+vendor/lib/libllvm-a3xx.so
+vendor/lib/libllvm-arm.so
 vendor/lib/libllvm-qcom.so
+vendor/lib/libOpenCL.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/librs_adreno.so
