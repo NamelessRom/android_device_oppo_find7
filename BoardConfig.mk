@@ -72,6 +72,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
 USE_DEVICE_SPECIFIC_CAMERA := true
 COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
+# CM Hardware
+BOARD_HARDWARE_CLASS += device/oppo/find7/cmhw
+
 # Graphics
 BOARD_EGL_CFG := device/oppo/apq8064-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
