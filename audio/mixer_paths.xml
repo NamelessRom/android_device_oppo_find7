@@ -711,7 +711,7 @@
         <ctl name="SLIM TX7 MUX" value="DEC3" />
         <ctl name="DEC3 MUX" value="ADC4" />
         <ctl name="ADC4 Volume" value="100" />
-        <ctl name="DEC3 Volume" value="68" />
+        <ctl name="DEC3 Volume" value="100" />
     </path>
 
     <path name="speaker">
@@ -1100,11 +1100,11 @@
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
         <ctl name="ADC3 Volume" value="100" />
-        <ctl name="DEC4 Volume" value="68" />
+        <ctl name="DEC4 Volume" value="100" />
         <ctl name="SLIM TX8 MUX" value="DEC3" />
         <ctl name="DEC3 MUX" value="ADC4" />
         <ctl name="ADC4 Volume" value="100" />
-        <ctl name="DEC3 Volume" value="68" />
+        <ctl name="DEC3 Volume" value="100" />
     </path>
 
     <path name="speaker-dmic-endfire-liquid">
@@ -1119,7 +1119,6 @@
 
     <path name="dmic-endfire">
         <path name="speaker-dmic-endfire" />
-        <ctl name="IIR1 INP1 MUX" value="DEC7" />
     </path>
 
     <path name="dmic-endfire-liquid">
