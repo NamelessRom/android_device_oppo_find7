@@ -76,6 +76,13 @@ PRODUCT_PACKAGES += \
     memtrack.msm8974 \
     liboverlay
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8974
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
+
 # Keylayouts
 PRODUCT_PACKAGES += \
     $(LOCAL_PATH)/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
