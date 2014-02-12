@@ -533,3 +533,9 @@ service wcnss-service /system/bin/wcnss_service
     user system
     group system wifi
     oneshot
+
+# GPS
+service gsiff_daemon /system/bin/gsiff_daemon
+    class late_start
+    user system
+    group gps net_raw
