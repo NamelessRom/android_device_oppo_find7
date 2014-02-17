@@ -129,5 +129,12 @@ TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
 # SELinux
 BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
 
+# No old RPC for prop
+TARGET_NO_RPC := true
+
 # inherit from the proprietary version
+ifneq ($(QCPATH),)
+-include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
+endif
+
 -include vendor/oppo/find7/BoardConfigVendor.mk
