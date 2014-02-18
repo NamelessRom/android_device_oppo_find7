@@ -1,20 +1,23 @@
 # Misc executables
 bin/btnvtool
-bin/ds_fmc_appd
 bin/hci_qcomm_init
+
+# Perf
 bin/mpdecision
+vendor/lib/libqc-opt.so
 
 # ADSP
+bin/adsprpcd
 vendor/lib/libadsprpc.so
 
 # Audio
-etc/Bluetooth_cal.acdb
-etc/General_cal.acdb
-etc/Global_cal.acdb
-etc/Handset_cal.acdb
-etc/Hdmi_cal.acdb
-etc/Headset_cal.acdb
-etc/Speaker_cal.acdb
+etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
+etc/acdbdata/MTP/MTP_General_cal.acdb
+etc/acdbdata/MTP/MTP_Global_cal.acdb
+etc/acdbdata/MTP/MTP_Handset_cal.acdb
+etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
+etc/acdbdata/MTP/MTP_Headset_cal.acdb
+etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
@@ -76,6 +79,11 @@ vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 
 # Camera firmware
+etc/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw
+
+# Venus (media) firmware
 etc/firmware/venus.b00
 etc/firmware/venus.b01
 etc/firmware/venus.b02
@@ -122,20 +130,20 @@ vendor/lib/libCB.so
 vendor/lib/libc2d30.so
 vendor/lib/libc2d30-a3xx.so
 vendor/lib/libgsl.so
-vendor/lib/libllvm-a3xx.so
-vendor/lib/libllvm-arm.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libOpenCL.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
+vendor/lib/libscale.so
 
 # Graphics firmware
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
 # Media
+vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
 vendor/lib/libmmparser.so
@@ -148,15 +156,6 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
 
-# Misc
-vendor/lib/libdiag.so
-vendor/lib/libqc-opt.so
-
-# Misc firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-
 # NFC
 etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
 
@@ -168,6 +167,7 @@ vendor/lib/libmm-abl-oem.so
 
 # Qualcomm framework
 bin/irsc_util
+vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsnetutils.so
 vendor/lib/libdsutils.so
@@ -188,9 +188,10 @@ vendor/lib/libqmiservices.so
 # Radio
 app/qcrilmsgtunnel.apk
 app/shutdownlistener.apk
-bin/bridgemgrd
 bin/netmgrd
 bin/qmuxd
+bin/radish
+bin/rfs_access
 bin/rmt_storage
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
@@ -202,16 +203,25 @@ vendor/lib/libril-qcril-hook-oem.so
 
 # Sensors
 bin/sensors.qcom
+etc/sensor_def_qcomdev.conf
 vendor/lib/hw/sensors.msm8974.so
 vendor/lib/libAKM8963.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
+vendor/lib/libsensor_thresh.so
 vendor/lib/libsensor_user_cal.so
 
 # Thermal
 bin/thermal-engine
 vendor/lib/libthermalclient.so
+vendor/lib/libthermalioctl.so
 
 # Time services
 bin/time_daemon
 vendor/lib/libtime_genoff.so
+
+# Listen service
+vendor/lib/liblistenhardware.so
+vendor/lib/liblistenjni.so
+vendor/lib/liblisten.so
+vendor/lib/liblistensoundmodel.so
