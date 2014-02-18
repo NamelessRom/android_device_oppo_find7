@@ -132,6 +132,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8974
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger
+
 # QRNGD
 PRODUCT_PACKAGES += \
     qrngd \
