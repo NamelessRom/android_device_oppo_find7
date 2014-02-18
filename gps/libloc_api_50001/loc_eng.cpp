@@ -182,6 +182,7 @@ static void loc_eng_handle_engine_up(loc_eng_data_s_type &loc_eng_data) ;
 
 static int loc_eng_start_handler(loc_eng_data_s_type &loc_eng_data);
 static int loc_eng_stop_handler(loc_eng_data_s_type &loc_eng_data);
+static int loc_eng_get_zpp_handler(loc_eng_data_s_type &loc_eng_data);
 
 static void deleteAidingData(loc_eng_data_s_type &logEng);
 static AgpsStateMachine*
@@ -297,6 +298,28 @@ inline void LocEngPositionMode::log() const {
     mPosMode.logv();
 }
 void LocEngPositionMode::send() const {
+    mAdapter->sendMsg(this);
+}
+
+LocEngGetZpp::LocEngGetZpp(LocEngAdapter* adapter) :
+    LocMsg(), mAdapter(adapter)
+{
+    locallog();
+}
+inline void LocEngGetZpp::proc() const
+{
+    loc_eng_data_s_type* locEng = (loc_eng_data_s_type*)mAdapter->getOwner();
+    loc_eng_get_zpp_handler(*locEng);
+}
+inline void LocEngGetZpp::locallog() const
+{
+    LOC_LOGV("LocEngGetZpp");
+}
+inline void LocEngGetZpp::log() const
+{
+    locallog();
+}
+void LocEngGetZpp::send() const {
     mAdapter->sendMsg(this);
 }
 
@@ -857,7 +880,9 @@ void LocEngReportNmea::proc() const {
     gettimeofday(&tv, (struct timezone *) NULL);
     int64_t now = tv.tv_sec * 1000LL + tv.tv_usec / 1000;
     CALLBACK_LOG_CALLFLOW("nmea_cb", %d, mLen);
-    locEng->nmea_cb(now, mNmea, mLen);
+
+    if (locEng->nmea_cb != NULL)
+        locEng->nmea_cb(now, mNmea, mLen);
 }
 inline void LocEngReportNmea::locallog() const {
     LOC_LOGV("LocEngReportNmea");
@@ -1772,11 +1797,14 @@ int loc_eng_set_position_mode(loc_eng_data_s_type &loc_eng_data,
     ENTRY_LOG_CALLFLOW();
     INIT_CHECK(loc_eng_data.adapter, return -1);
 
-    // The position mode for APQ target can only be standalone
-    bool isAPQ = (getTargetGnssType(get_target()) == GNSS_GSS);
-    if (isAPQ && params.mode != LOC_POSITION_MODE_STANDALONE) {
+    int gnssType = getTargetGnssType(loc_get_target());
+
+    // The position mode for GSS/QCA1530 can only be standalone
+    bool is1530 = gnssType == GNSS_QCA1530;
+    bool isAPQ = gnssType == GNSS_GSS;
+    if ((isAPQ || is1530) && params.mode != LOC_POSITION_MODE_STANDALONE) {
         params.mode = LOC_POSITION_MODE_STANDALONE;
-        LOC_LOGD("Position mode changed to standalone for APQ target.");
+        LOC_LOGD("Position mode changed to standalone for target with GSS/qca1530.");
     }
 
     if(! loc_eng_data.adapter->getUlpProxy()->sendFixMode(params))
@@ -1915,6 +1943,32 @@ static void loc_inform_gps_status(loc_eng_data_s_type &loc_eng_data, GpsStatusVa
     EXIT_LOG(%s, VOID_RET);
 }
 
+static int loc_eng_get_zpp_handler(loc_eng_data_s_type &loc_eng_data)
+{
+   ENTRY_LOG();
+   int ret_val = LOC_API_ADAPTER_ERR_SUCCESS;
+   UlpLocation location;
+   LocPosTechMask tech_mask = LOC_POS_TECH_MASK_DEFAULT;
+   GpsLocationExtended locationExtended;
+   memset(&locationExtended, 0, sizeof (GpsLocationExtended));
+   locationExtended.size = sizeof(locationExtended);
+   memset(&location, 0, sizeof location);
+
+   ret_val = loc_eng_data.adapter->getZpp(location.gpsLocation, tech_mask);
+  //Mark the location source as from ZPP
+  location.gpsLocation.flags |= LOCATION_HAS_SOURCE_INFO;
+  location.position_source = ULP_LOCATION_IS_FROM_ZPP;
+
+  loc_eng_data.adapter->getUlpProxy()->reportPosition(location,
+                                     locationExtended,
+                                     NULL,
+                                     LOC_SESS_SUCCESS,
+                                     tech_mask);
+
+  EXIT_LOG(%d, ret_val);
+  return ret_val;
+}
+
 /*
   Callback function passed to Data Services State Machine
   This becomes part of the state machine's servicer and
@@ -2023,8 +2077,10 @@ void loc_eng_agps_init(loc_eng_data_s_type &loc_eng_data, AGpsExtCallbacks* call
                                                  AGPS_TYPE_WIFI,
                                                  true);
 
-    bool isAPQ = (getTargetGnssType(get_target()) == GNSS_GSS);
-    if (!isAPQ) {
+    int gnssType = getTargetGnssType(loc_get_target());
+    bool isAPQ = (gnssType == GNSS_GSS);
+    bool is1530 = (gnssType == GNSS_QCA1530);
+    if (!isAPQ && !is1530) {
         loc_eng_data.agnss_nif = new AgpsStateMachine(servicerTypeAgps,
                                                       (void *)loc_eng_data.agps_status_cb,
                                                       AGPS_TYPE_SUPL,
