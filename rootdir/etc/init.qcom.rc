@@ -200,9 +200,6 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-    # Wifi firmware copy
-    exec /system/bin/sh /system/etc/init.qcom.wifi.sh
-
     setprop qcom.audio.init complete
 
     setprop vold.post_fs_data_done 1
@@ -466,6 +463,11 @@ service time_daemon /system/bin/time_daemon
     user root
     group root
 
+service wcnss-init /system/bin/sh /system/etc/init.qcom.wifi.sh
+    class main
+    user root
+    oneshot
+
 service qrngd /system/bin/qrngd -f
     class main
     user root
@@ -531,7 +533,7 @@ service wcnss-service /system/bin/wcnss_service
     class late_start
     user system
     group system wifi
-    oneshot
+    disabled
 
 # GPS
 service gsiff_daemon /system/bin/gsiff_daemon

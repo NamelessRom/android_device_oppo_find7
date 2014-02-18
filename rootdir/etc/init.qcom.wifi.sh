@@ -26,13 +26,26 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-PATH=/sbin:/system/sbin:/system/bin:/system/xbin
-export PATH
+# Wait for nvitems
+tries=30
+while [ ! "$(ls /data/opponvitems)" ]; do
+    tries=$((tries-1))
+    if [ $tries -eq 0 ]; then
+        log -t qcom-wifi -p e "$0: timeout waiting for NV"
+        exit 1
+    fi
+    sleep 1
+done
 
-cp /system/etc/wifi/WCNSS_qcom_cfg.ini /persist/WCNSS_qcom_cfg.ini
-chown -h system:wifi /persist/WCNSS_qcom_cfg.ini
-chmod -h 660 /persist/WCNSS_qcom_cfg.ini
+# Workaround for conn_init not copying the updated firmware
+rm /data/misc/wifi/WCNSS_qcom_cfg.ini 2> /dev/null
+rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin 2> /dev/null
 
-cp /system/etc/wifi/WCNSS_qcom_wlan_nv.bin /persist/WCNSS_qcom_wlan_nv.bin
+echo `getprop ro.serialno` > /sys/devices/platform/wcnss_wlan.0/serial_number
+setprop wlan.driver.config /data/misc/wifi/WCNSS_qcom_cfg.ini
 
-exit 0
+logwrapper /system/bin/conn_init
+
+echo 1 > /dev/wcnss_wlan
+
+start wcnss-service

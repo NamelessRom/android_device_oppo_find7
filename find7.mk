@@ -163,7 +163,11 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
 
-PRODUCT_PACKAGES += wcnss_service
+PRODUCT_PACKAGES += \
+    wcnss_service \
+    conn_init \
+    WCNSS_qcom_cfg.ini \
+    WCNSS_qcom_wlan_nv.bin
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
