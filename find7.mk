@@ -57,6 +57,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8974
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
@@ -131,10 +135,6 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8974
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger
 
 # QRNGD
 PRODUCT_PACKAGES += \
