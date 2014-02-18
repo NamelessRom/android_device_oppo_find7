@@ -33,7 +33,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.rc \
-    init.oppo.usb.rc \
+    init.qcom.usb.rc \
     ueventd.qcom.rc
 
 # Audio
