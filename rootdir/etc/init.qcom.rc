@@ -310,20 +310,21 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
 
-service bridgemgrd /system/bin/bridgemgrd
-    class main
-    user radio
-    group radio
+service rfs_access /system/bin/rfs_access
+    class core
+    user system
+    group system net_raw
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
     class main
     user radio
-    group radio audio bluetooth gps
+    group radio audio bluetooth gps qcom_diag
 
 service netmgrd /system/bin/netmgrd
     class main
-    disabled
+    user root
+    group root
 
 # QCOM sensor
 service sensors /system/bin/sensors.qcom
@@ -437,7 +438,7 @@ service charger /charger
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
-    group camera system inet input
+    group camera system inet input graphics
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B \
@@ -535,3 +536,12 @@ service gsiff_daemon /system/bin/gsiff_daemon
     class late_start
     user system
     group gps net_raw
+
+service ppd /system/bin/mm-pp-daemon
+    class late_start
+    user system
+    socket pps stream 0660 system system
+    group system graphics
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
