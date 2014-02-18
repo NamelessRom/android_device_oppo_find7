@@ -25,4 +25,6 @@
     <!-- Flag indicating if the tty is enabled -->
     <bool name="tty_enabled">true</bool>
 
+    <bool name="config_enabled_lte">true</bool>
+
 </resources>
