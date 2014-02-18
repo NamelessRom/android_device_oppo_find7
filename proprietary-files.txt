@@ -162,6 +162,7 @@ etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
 # Postprocessing
 app/PPPreference.apk
 bin/mm-pp-daemon
+vendor/lib/libdisp-aba.so
 vendor/lib/libmm-abl.so
 vendor/lib/libmm-abl-oem.so
 
