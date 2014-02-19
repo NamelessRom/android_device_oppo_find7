@@ -59,7 +59,8 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger
+    charger \
+    charger_res_images
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
