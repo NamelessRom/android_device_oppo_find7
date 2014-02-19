@@ -555,3 +555,7 @@ service nvinit /system/bin/hwaddrs
     user root
     group system wifi
     oneshot
+
+service bbvinit /system/bin/sh /system/etc/init.bbv.sh
+    class late_start
+    oneshot

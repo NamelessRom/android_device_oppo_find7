@@ -25,6 +25,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Config scripts
 PRODUCT_PACKAGES += \
+    init.bbv.sh \
     init.qcom.bt.sh \
     init.qcom.usb.sh \
     init.qcom.wifi.sh
