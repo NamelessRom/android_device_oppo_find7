@@ -226,3 +226,6 @@ vendor/lib/liblistenhardware.so
 vendor/lib/liblistenjni.so
 vendor/lib/liblisten.so
 vendor/lib/liblistensoundmodel.so
+
+# Wifi
+bin/hwaddrs
