@@ -51,6 +51,7 @@
         <item>"mobile_fota,10,0,2,60000,true"</item>
         <item>"mobile_ims,11,0,2,60000,true"</item>
         <item>"mobile_cbs,12,0,2,60000,true"</item>
+        <item>"mobile_ia,14,0,2,-1,true"</item>
         <item>"bluetooth,7,7,2,-1,true"</item>
     </string-array>
 
@@ -100,9 +101,6 @@
     <!-- Boolean indicating if restoring network selection should be skipped -->
     <!-- The restoring is handled by modem if it is true -->
     <bool translatable="false" name="skip_restoring_network_selection">true</bool>
-
-    <!-- The default iface on which to monitor data use -->
-    <string name="config_datause_iface" translatable="false">rmnet_usb0</string>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
@@ -284,5 +282,8 @@
          it causes the device to wake up.
          The default is false. -->
     <bool name="config_lidControlsSleep">true</bool>
+
+    <!-- bool value to for enabling motion accelerometer -->
+    <bool name="use_motion_accel">true</bool>
 
 </resources>
