@@ -126,13 +126,21 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 
-# OMX
+# Media
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libdashplayer \
+    libOmxAacEnc \
+    libOmxAmrEnc \
     libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
     libOmxVdec \
+    libOmxVdecHevc \
     libOmxVenc \
-    libstagefrighthw
+    libstagefrighthw \
+    qcmediaplayer
 
 # Power
 PRODUCT_PACKAGES += \
