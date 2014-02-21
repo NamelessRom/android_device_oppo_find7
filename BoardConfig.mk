@@ -71,6 +71,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
 USE_DEVICE_SPECIFIC_CAMERA := true
 COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
+# Charger
+BOARD_CHARGER_RES := device/oppo/find7/charger/images
+
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/oppo/find7/cmhw
 
