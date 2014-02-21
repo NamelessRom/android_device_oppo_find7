@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="oclick_panel_title">Ρυθμίσεις O-Click</string>
+    <string name="oclick_panel_summary">Ρύθμιση συσκευής O-Click</string>
+
+    <string name="oclick_connect_string">Σύνδεση</string>
+    <string name="oclick_disconnect_string">Αποσύνδεση</string>
+    <string name="oclick_dialog_title">O-Click</string>
+    <string name="oclick_dialog_connecting_message">Προσπάθεια σύζευξης</string>
+
+    <string name="oclick_take_snapshot_title">Απομακρυσμένο κλείστρο</string>
+    <string name="oclick_take_snapshot_summary">Μονό κλικ για λήψη φωτογραφίας</string>
+    <string name="oclick_find_my_phone_title">Εντοπισμός τηλεφώνου</string>
+    <string name="oclick_find_my_phone_summary">Διπλό κλικ για εντοπισμό του τηλεφώνου</string>
+    <string name="oclick_fence_title">Συναγερμός εγγύτητας</string>
+    <string name="oclick_fence_summary">Ειδοποίηση όταν δεν είναι κοντά στο τηλέφωνο</string>
+    <string name="oclick_disconnect_alert_title">Συναγερμός εκτός εμβέλειας</string>
+    <string name="oclick_disconnect_alert_summary">Ειδοποίηση όταν είναι εκτός εμβέλειας</string>
+
+    <string name="alert_category_title">Συναγερμοί</string>
+    <string name="action_category_title">Λειτουργίες</string>
+</resources>
