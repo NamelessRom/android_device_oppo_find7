@@ -111,6 +111,7 @@ bin/gsiff_daemon
 etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
+vendor/lib/hw/flp.default.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
