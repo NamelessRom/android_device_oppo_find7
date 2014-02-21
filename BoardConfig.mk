@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-BOARD_VENDOR := oppo
+# inherit from Oppo common
+-include device/oppo/common/BoardConfigCommon.mk
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
@@ -74,9 +75,6 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
 # Charger
 BOARD_CHARGER_RES := device/oppo/find7/charger/images
-
-# CM Hardware
-BOARD_HARDWARE_CLASS += device/oppo/find7/cmhw
 
 # SELinux
 BOARD_SEPOLICY_DIRS := \
