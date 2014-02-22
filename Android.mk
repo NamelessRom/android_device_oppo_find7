@@ -92,10 +92,10 @@ CMN_IMAGES := \
 
 CMN_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CMN_IMAGES)))
 $(CMN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "CMN firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "CMN firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(CMN_SYMLINKS)
 
@@ -104,10 +104,10 @@ ISDB_IMAGES := \
 
 ISDB_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(ISDB_IMAGES)))
 $(ISDB_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "ISDB firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "ISDB firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(ISDB_SYMLINKS)
 
@@ -116,10 +116,10 @@ KM_IMAGES := \
 
 KM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(KM_IMAGES)))
 $(KM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "Keymaster firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "Keymaster firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(KM_SYMLINKS)
 
@@ -128,10 +128,10 @@ MC_IMAGES := \
 
 MC_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MC_IMAGES)))
 $(MC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "Mobicore firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "Mobicore firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MC_SYMLINKS)
 
@@ -140,10 +140,10 @@ PLAYREADY_IMAGES := \
 
 PLAYREADY_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(PLAYREADY_IMAGES)))
 $(PLAYREADY_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "Playready firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "Playready firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(PLAYREADY_SYMLINKS)
 
@@ -152,10 +152,10 @@ WV_IMAGES := \
 
 WV_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(WV_IMAGES)))
 $(WV_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-    @echo "Widevine firmware link: $@"
-    @mkdir -p $(dir $@)
-    @rm -rf $@
-    $(hide) ln -sf /firmware/image/$(notdir $@) $@
+	@echo "Widevine firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WV_SYMLINKS)
 
