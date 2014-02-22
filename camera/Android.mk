@@ -1,4 +1,7 @@
+ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
+
 LOCAL_PATH := $(call my-dir)
+
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
@@ -13,3 +16,5 @@ LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
 #include $(BUILD_HEAPTRACKED_SHARED_LIBRARY)
+
+endif
