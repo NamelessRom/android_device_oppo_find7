@@ -52,6 +52,7 @@ endif
 
 PRODUCT_COPY_FILES += \\
 EOF
+LINEEND=" \\"
 COUNT=`wc -l proprietary-files.txt | awk {'print $1'}`
 DISM=`egrep -c '(^#|^$)' proprietary-files.txt`
 COUNT=`expr $COUNT - $DISM`
