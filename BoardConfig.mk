@@ -43,6 +43,7 @@ BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
 TARGET_KERNEL_CONFIG := cyanogenmod_find7_defconfig
+TARGET_CUSTOM_DTBTOOL := dtbTool-find7
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP
@@ -87,6 +88,16 @@ HAVE_ADRENO_SOURCE:= false
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
+
+# Shader cache config options
+# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
