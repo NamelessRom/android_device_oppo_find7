@@ -35,7 +35,7 @@ etc/firmware/venus.mdt
 
 # DRM
 bin/qseecomd
-lib/libQSEEComAPI.so
+lib/libQSEEComAPI.so:vendor/lib/libQSEEComAPI.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
@@ -145,7 +145,6 @@ vendor/lib/libril-qcril-hook-oem.so
 bin/sensors.qcom
 etc/sensor_def_qcomdev.conf
 vendor/lib/hw/sensors.msm8974.so
-vendor/lib/libAKM8963.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsensor_thresh.so
@@ -165,3 +164,8 @@ vendor/lib/liblistenhardware.so
 vendor/lib/liblistenjni.so
 -vendor/lib/liblisten.so
 vendor/lib/liblistensoundmodel.so
+
+# IMS core
+-app/ims.apk
+etc/permissions/ims.xml
+framework/imslibrary.jar

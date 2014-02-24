@@ -6,7 +6,7 @@ DEVICE=find7
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 rm -rf $BASE/*
 
-for FILE in `egrep -v '(^#|^$)' proprietary-files.txt proprietary-files-qc.txt`; do
+for FILE in `egrep -v '(^#|^$)' proprietary-files.txt` `egrep -v '(^#|^$)' proprietary-files-qc.txt`; do
   OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
   FILE=`echo ${PARSING_ARRAY[0]} | sed -e "s/^-//g"`
   DEST=${PARSING_ARRAY[1]}
