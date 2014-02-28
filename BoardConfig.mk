@@ -36,7 +36,7 @@ TARGET_CPU_VARIANT := krait
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom lpj=67677 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 zcache androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom lpj=67677 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
@@ -77,6 +77,18 @@ BOARD_CHARGER_RES := device/oppo/find7/charger/images
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/oppo/find7/cmhw
+
+# SELinux
+BOARD_SEPOLICY_DIRS := \
+   device/oppo/find7/sepolicy
+
+# The list below is order dependent
+BOARD_SEPOLICY_UNION += \
+    file.te \
+    device.te \
+    app.te \
+    ueventd.te \
+    file_contexts
 
 # Graphics
 BOARD_EGL_CFG := device/oppo/find7/configs/egl.cfg
@@ -140,9 +152,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
-
-# SELinux
-BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
 
 # No old RPC for prop
 TARGET_NO_RPC := true
