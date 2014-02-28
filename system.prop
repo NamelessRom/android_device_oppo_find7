@@ -5,6 +5,7 @@
 ro.sf.lcd_density=480
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 telephony.lteOnGsmDevice=1
+telephony.lteOnCdmaDevice=0
 persist.radio.add_power_save=1
 
 debug.composition.type=c2d
@@ -40,3 +41,5 @@ ro.qc.sdk.izat.premium_enabled=1
 ro.qc.sdk.izat.service_mask=0x5
 persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1
+
+ro.qualcomm.cabl=0
