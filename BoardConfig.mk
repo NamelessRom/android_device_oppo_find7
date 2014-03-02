@@ -90,6 +90,8 @@ BOARD_SEPOLICY_UNION += \
     ueventd.te \
     file_contexts
 
+PRODUCT_BOOT_JARS := $(subst $(space),:,$(PRODUCT_BOOT_JARS))
+
 # Graphics
 BOARD_EGL_CFG := device/oppo/find7/configs/egl.cfg
 USE_OPENGL_RENDERER := true
