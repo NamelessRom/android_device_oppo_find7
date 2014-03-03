@@ -26,17 +26,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-# Wait for nvitems
-tries=30
-while [ ! "$(ls /data/opponvitems)" ]; do
-    tries=$((tries-1))
-    if [ $tries -eq 0 ]; then
-        log -t qcom-wifi -p e "$0: timeout waiting for NV"
-        exit 1
-    fi
-    sleep 1
-done
-
 # Workaround for conn_init not copying the updated firmware
 rm /data/misc/wifi/WCNSS_qcom_cfg.ini 2> /dev/null
 rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin 2> /dev/null
@@ -47,5 +36,20 @@ setprop wlan.driver.config /data/misc/wifi/WCNSS_qcom_cfg.ini
 logwrapper /system/bin/conn_init
 
 echo 1 > /dev/wcnss_wlan
+
+# Wait for nvitems
+if [ ! "$(ls /data/opponvitems)" ]; then
+    tries=30
+    while [ ! "$(ls /data/opponvitems)" ]; do
+        tries=$((tries-1))
+        if [ $tries -eq 0 ]; then
+            log -t qcom-wifi -p e "$0: timeout waiting for NV"
+            exit 1
+        fi
+        sleep 1
+    done
+    logwrapper /system/bin/conn_init
+    echo 0 > /sys/module/wlan/parameters/con_mode
+fi
 
 start wcnss-service
