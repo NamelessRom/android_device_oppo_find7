@@ -14,3 +14,6 @@ vendor/lib/libchromatix_ov5648_default_video.so
 vendor/lib/libchromatix_ov5648_preview.so
 vendor/lib/libchromatix_ov5648_video_cmcc.so
 vendor/lib/libchromatix_ov5648_zsl.so
+
+# NFC
+etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
