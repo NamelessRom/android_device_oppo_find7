@@ -19,6 +19,7 @@
 
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_find7_defconfig
+BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/mkbootimg.mk
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
