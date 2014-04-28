@@ -37,5 +37,8 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1073741824
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13747929088 # 13747945472 - 16384 for crypto footer
 #BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221225472
 
+# Recovery
+TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
+
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
