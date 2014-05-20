@@ -20,7 +20,8 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.rc
+    init.qcom.rc \
+    init.qcom.usb.rc
 
 # Camera
 PRODUCT_PACKAGES += \
