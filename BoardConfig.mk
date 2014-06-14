@@ -40,5 +40,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13747929088 # 13747945472 - 16384 for cryp
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := find7,find7a,X9007,X9006
+
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
