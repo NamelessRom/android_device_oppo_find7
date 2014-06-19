@@ -116,6 +116,8 @@ static void import_kernel_nv(char *name, __unused int for_emulator)
     if (name_len == 0) return;
 
     if (!strcmp(name, "oppo.pcb_version")) {
+        property_set("ro.oppo.pcb_version", value);
+
         if (!strcmp(value, "20") ||
                 !strcmp(value, "21") ||
                 !strcmp(value, "22") ||
@@ -134,6 +136,8 @@ static void import_kernel_nv(char *name, __unused int for_emulator)
             property_set("ro.sf.lcd_density.override", "480");
             set_xxhdpi_properties();
         }
+    } else if (!strcmp(name,"oppo.rf_version")) {
+        property_set("ro.oppo.rf_version", value);
     }
 }
 
