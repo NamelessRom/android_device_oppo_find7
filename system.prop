@@ -2,7 +2,7 @@
 # system.prop for find7
 #
 
-ro.sf.lcd_density=480
+#ro.sf.lcd_density=480
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 telephony.lteOnGsmDevice=1
 telephony.lteOnCdmaDevice=0

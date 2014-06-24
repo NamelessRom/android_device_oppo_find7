@@ -21,7 +21,8 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.rc \
-    init.qcom.usb.rc
+    init.qcom.usb.rc \
+    libinit_find7
 
 # Camera
 PRODUCT_PACKAGES += \
