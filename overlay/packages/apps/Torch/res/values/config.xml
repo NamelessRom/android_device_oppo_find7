@@ -20,7 +20,5 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds. -->
 <resources>
-    <bool name="useCameraInterface">false</bool>
-    <string name="flashDevice">/sys/devices/qcom,camera-led-flash.81/test</string>
-    <integer name="valueOn">1</integer>
+    <bool name="useCameraInterface">true</bool>
 </resources>
