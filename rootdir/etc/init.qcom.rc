@@ -39,6 +39,21 @@ on init
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
+on boot
+    # For find7s notification LED
+    chown system system /sys/class/leds/led:rgb_red/brightness
+    chown system system /sys/class/leds/led:rgb_red/ramp_step_ms
+    chown system system /sys/class/leds/led:rgb_red/duty_pcts
+    chown system system /sys/class/leds/led:rgb_red/blink
+    chown system system /sys/class/leds/led:rgb_green/brightness
+    chown system system /sys/class/leds/led:rgb_green/ramp_step_ms
+    chown system system /sys/class/leds/led:rgb_green/duty_pcts
+    chown system system /sys/class/leds/led:rgb_green/blink
+    chown system system /sys/class/leds/led:rgb_blue/brightness
+    chown system system /sys/class/leds/led:rgb_blue/ramp_step_ms
+    chown system system /sys/class/leds/led:rgb_blue/duty_pcts
+    chown system system /sys/class/leds/led:rgb_blue/blink
+
 on post-fs-data
     # Torch
     chown system camera /sys/devices/qcom,camera-led-flash.81/test
