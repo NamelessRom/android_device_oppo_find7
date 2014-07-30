@@ -24,6 +24,10 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     libinit_find7
 
+# Audio
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8974
