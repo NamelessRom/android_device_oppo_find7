@@ -12,5 +12,5 @@
 /dev/block/platform/msm_sdcc.1/by-name/modem        /firmware       vfat    ro,shortname=lower,uid=1000,gid=1026,dmask=227,fmask=337,context=u:object_r:firmware_file:s0        wait
 
 /devices/msm_sdcc.1/mmc_host                        auto            ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,nodelalloc,uid=1023,gid=1023,dmask=0007,fmask=0007 voldmanaged=sdcard0:29,nonremovable,noemulatedsd
-/devices/msm_sdcc.2/mmc_host                        auto            vfat    defaults voldmanaged=sdcard1:auto,noemulatedsd
+/devices/msm_sdcc.2/mmc_host                        auto            vfat    defaults voldmanaged=sdcard1:auto
 /devices/platform/xhci-hcd                          auto            vfat    defaults voldmanaged=usbdisk:auto
