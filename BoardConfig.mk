@@ -18,7 +18,7 @@
 -include device/oppo/msm8974-common/BoardConfigCommon.mk
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_find7_defconfig
+TARGET_KERNEL_CONFIG := custom_find7_defconfig
 BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/mkbootimg.mk
 
 # Bluetooth

@@ -17,6 +17,9 @@
 # overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# do not build dsp manager
+USE_DSP_MANAGER := false
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
