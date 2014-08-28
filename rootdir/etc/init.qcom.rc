@@ -56,8 +56,8 @@ on boot
 
 on post-fs-data
     # Torch
-    chown system camera /sys/devices/qcom,camera-led-flash.81/test
-    chmod 0660 /sys/devices/qcom,camera-led-flash.81/test
+    chown system camera /sys/class/leds/torch-light/brightness
+    chmod 0660 /sys/class/leds/torch-light/brightness
 
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start
