@@ -23,4 +23,8 @@
     <bool name="useCameraInterface">false</bool>
     <string name="flashDevice">/sys/class/leds/torch-light/brightness</string>
     <integer name="valueOn">1</integer>
+    <string-array name="flashDevices">
+        <item>/sys/class/leds/flashlight/brightness</item>
+        <item>/sys/devices/qcom,camera-led-flash.81/test</item>
+    </string-array>
 </resources>
