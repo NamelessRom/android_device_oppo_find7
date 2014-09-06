@@ -56,6 +56,8 @@ on boot
 
 on post-fs-data
     # Torch
+    chown system camera /sys/devices/qcom,camera-led-flash.81/test
+    chmod 0660 /sys/devices/qcom,camera-led-flash.81/test
     chown system camera /sys/class/leds/torch-light/brightness
     chmod 0660 /sys/class/leds/torch-light/brightness
 
