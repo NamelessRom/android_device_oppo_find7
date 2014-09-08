@@ -9,6 +9,10 @@ $(call inherit-product, vendor/nameless/config/common.mk)
 # Enhanced NFC
 $(call inherit-product, vendor/nameless/config/nfc_enhanced.mk)
 
+# Logo
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/logo.bin:system/logo.bin
+
 PRODUCT_NAME := nameless_find7
 PRODUCT_DEVICE := find7
 
