@@ -46,6 +46,7 @@ BOARD_VOLD_CRYPTFS_MIGRATE := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
+RECOVERY_VARIANT      := philz
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := find7,find7a,X9007,X9006,FIND7
