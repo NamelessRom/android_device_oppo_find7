@@ -112,7 +112,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
 #endif
 
     if (params.get(android::CameraParameters::KEY_RECORDING_HINT)) {
-        videoMode = (!strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true"));
+        videoMode = (!strcmp(params.get(
+                android::CameraParameters::KEY_RECORDING_HINT), "true"));
     }
 
     if (!videoMode) {
@@ -155,7 +156,8 @@ static char *camera_fixup_setparams(int id, const char *settings)
 #endif
 
     if (params.get(android::CameraParameters::KEY_RECORDING_HINT)) {
-        videoMode = (!strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true"));
+        videoMode = (!strcmp(params.get(
+                android::CameraParameters::KEY_RECORDING_HINT), "true"));
     }
 
     if (params.get(KEY_EXPOSURE_TIME)) {
