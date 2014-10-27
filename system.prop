@@ -19,3 +19,7 @@ ro.gps.agps_provider=1
 
 # cabl is handled by the panel
 ro.qualcomm.cabl=0
+
+#Oppo
+ro.oppo.device=find7s
+ro.sf.lcd_density=538
