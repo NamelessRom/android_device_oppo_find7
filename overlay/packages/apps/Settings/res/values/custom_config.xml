@@ -18,6 +18,7 @@
 
     <string-array name="maintainers" translatable="false">
         <item>jumoog</item>
+        <item>evisceration</item>
     </string-array>
 
 </resources>
