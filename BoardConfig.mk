@@ -32,7 +32,7 @@ TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
 RECOVERY_VARIANT      := philz
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := find7,find7s,find7u
+TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7s
 
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
