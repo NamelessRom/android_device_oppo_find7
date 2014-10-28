@@ -22,7 +22,6 @@ USE_DSP_MANAGER := false
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    libinit_find7 \
     init.qcom.rc \
     init.qcom.usb.rc
 
