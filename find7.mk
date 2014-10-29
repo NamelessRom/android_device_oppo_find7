@@ -30,6 +30,10 @@ $(call inherit-product, device/oppo/msm8974-common/msm8974.mk)
 # Inherit from find7-common
 $(call inherit-product, device/oppo/find7-common/find7-common.mk)
 
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
