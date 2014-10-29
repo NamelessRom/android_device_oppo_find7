@@ -22,8 +22,9 @@ USE_DSP_MANAGER := false
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.qcom \
     init.qcom.rc \
-    init.qcom.usb.rc
+    init.qcom.usb.rc \
 
 # Audio
 PRODUCT_COPY_FILES += \
