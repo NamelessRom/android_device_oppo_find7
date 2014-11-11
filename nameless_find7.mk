@@ -90,7 +90,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
 # Device uses high-density artwork where available
 # Also hack it to be compatible with Find7a and Find7s
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi 530dpi xxxhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 530dpi
 
 # Build description
