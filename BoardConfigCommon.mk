@@ -30,3 +30,10 @@ RECOVERY_VARIANT := twrp
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/oppo/find7-common
+
+# TWRP specific build flags
+DEVICE_RESOLUTION := 1080x1920
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_NO_USB_STORAGE := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_NO_SCREEN_BLANK := true
