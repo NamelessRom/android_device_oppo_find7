@@ -16,10 +16,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(BOARD_VENDOR),oppo)
-ifeq ($(TARGET_BOARD_PLATFORM),msm8974)
+ifneq ($(filter $(TARGET_DEVICE),find7 find7u find7a find7au),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-endif
 endif
