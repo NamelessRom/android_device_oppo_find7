@@ -56,3 +56,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=4.4.2/KVT49L/1390465867:user/r
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/find7/find7-vendor.mk)
+
+# Inherit from msm8974-common
+$(call inherit-product, device/oppo/msm8974-common/msm8974.mk)
