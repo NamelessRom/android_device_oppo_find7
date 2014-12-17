@@ -27,12 +27,6 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
 
-# Recovery
-PRODUCT_PACKAGES += \
-    twrp.fstab \
-    init.recovery.find7.rc \
-    qhdcp.sh \
-
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
