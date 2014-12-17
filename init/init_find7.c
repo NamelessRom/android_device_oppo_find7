@@ -1,5 +1,6 @@
 /*
    Copyright (c) 2014, The CyanogenMod Project
+   Copyright (c) 2014, The NamelessRom Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -27,7 +28,11 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <fcntl.h>
+#include <linux/fs.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -55,7 +60,42 @@ static void import_kernel_nv(char *name, int for_emulator)
     }
 }
 
+static bool has_unified_layout()
+{
+    const char* datadevice="/dev/block/mmcblk0p15";
+    uint64_t size = 0;
+    bool unified = false;
+
+    int fd = open(datadevice, O_RDONLY);
+    if (fd < 0 ) {
+        // fprintf(stderr, "could not open %s for reading: %s\n", datadevice, strerror(errno));
+        goto out;
+    }
+    if (ioctl(fd, BLKGETSIZE64, &size) < 0) {
+        // fprintf(stderr, "could not determine size of %s: %s\n", datadevice, strerror(errno));
+        goto cleanup;
+    }
+    if (size > 4*(10^9)) { // if the data partition is larger then 4GB we probably have unified layout
+        unified = true;
+    }
+
+cleanup:
+    close(fd);
+out:
+    return unified;
+}
+
+static void set_oppo_layout()
+{
+    if (has_unified_layout()) {
+        property_set("ro.oppo.layout", "unified");
+    } else {
+        property_set("ro.oppo.layout", "standard");
+    }
+}
+
 void vendor_load_properties()
 {
     import_kernel_cmdline(0, import_kernel_nv);
+    set_oppo_layout();
 }
