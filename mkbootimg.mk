@@ -42,7 +42,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 	$(hide) rm -rf $(TARGET_RECOVERY_ROOT_OUT)/qhdres
 	$(hide) cp -R $(call project-path-for,recovery)/gui/devices/1440x2560/res $(TARGET_RECOVERY_ROOT_OUT)/qhdres
 	@echo -e ${CL_CYN}"----- Copying configuration files ------"${CL_RST}
-	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/init.recovery.find7.rc $(TARGET_RECOVERY_ROOT_OUT)
+	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/init.recovery.target.rc $(TARGET_RECOVERY_ROOT_OUT)
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/qhdcp.sh $(TARGET_RECOVERY_ROOT_OUT)/sbin
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
