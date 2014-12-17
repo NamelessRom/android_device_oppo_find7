@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_find7
+
 # Kernel
 TARGET_KERNEL_CONFIG := custom_find7_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.selinux=permissive

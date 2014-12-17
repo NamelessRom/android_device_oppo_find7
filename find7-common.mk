@@ -17,6 +17,10 @@
 # overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Init
+PRODUCT_PACKAGES += \
+    libinit_find7 \
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
