@@ -34,7 +34,8 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 RECOVERY_VARIANT := twrp
 
 # TWRP specific build flags
-# DEVICE_RESOLUTION is set in specific device trees
+# Resolution set to Find 7a resolution to support unified resources
+DEVICE_RESOLUTION    := 1080x1920
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_NO_USB_STORAGE := true
 TW_INCLUDE_JB_CRYPTO := false
