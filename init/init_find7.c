@@ -68,11 +68,11 @@ static bool has_unified_layout()
 
     int fd = open(datadevice, O_RDONLY);
     if (fd < 0 ) {
-        // fprintf(stderr, "could not open %s for reading: %s\n", datadevice, strerror(errno));
+        ERROR("could not open %s for reading: %s\n", datadevice, strerror(errno));
         goto out;
     }
     if (ioctl(fd, BLKGETSIZE64, &size) < 0) {
-        // fprintf(stderr, "could not determine size of %s: %s\n", datadevice, strerror(errno));
+        ERROR("could not determine size of %s: %s\n", datadevice, strerror(errno));
         goto cleanup;
     }
     if (size > 4*(10^9)) { // if the data partition is larger then 4GB we probably have unified layout
