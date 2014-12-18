@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 # Device init files
 
-ifeq ($(filter $(TARGET_DEVICE),find7au find7u),)
+ifeq ($(filter $(TARGET_DEVICE),find7au find7su),)
   # Non unified
   include $(CLEAR_VARS)
   LOCAL_MODULE       := fstab.qcom

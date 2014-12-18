@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2014 The NamelessRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +15,19 @@
 # limitations under the License.
 #
 
+# Inherit from MSM8974 common
+include device/oppo/msm8974-common/BoardConfigCommon.mk
+
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_find7
+
+# Filesystem
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 536870912
+BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1364320256
+# BOARD_USERDATAIMAGE_PARTITION_SIZE set in specific device trees
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7-common/mkbootimg.mk
@@ -43,3 +55,6 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
+# inherit from the proprietary version
+-include vendor/oppo/find7/BoardConfigVendor.mk
