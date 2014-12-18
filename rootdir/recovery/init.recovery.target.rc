@@ -13,3 +13,9 @@ service qhdcp /sbin/qhdcp.sh
 
 on property:ro.oppo.device=find7s
     start qhdcp
+
+on property:ro.oppo.layout=unified
+   symlink /etc/twrp.fstab.ufd /etc/twrp.fstab
+
+on property:ro.oppo.layout=standard
+   symlink /etc/twrp.fstab.std /etc/twrp.fstab
