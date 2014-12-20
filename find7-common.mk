@@ -24,9 +24,14 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.qcom \
+    fstab.qcom.std \
+    fstab.qcom.ufd \
+    init.fs.rc.std \
+    init.fs.rc.ufd \
     init.qcom.rc \
     init.qcom.usb.rc \
+    storage_earlyinit.sh \
+    storage_init.sh
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -58,6 +63,8 @@ PRODUCT_PACKAGES += \
 
 # Build description
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=4.4.2/KVT49L/1390465867:user/release-keys PRIVATE_BUILD_DESC="msm8974-user 4.4.2 KVT49L eng.root.20141017.144947 release-keys"
+
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/find7/find7-vendor.mk)

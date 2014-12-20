@@ -27,7 +27,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE    := 536870912
 BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1364320256
-# BOARD_USERDATAIMAGE_PARTITION_SIZE set in specific device trees
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221225472
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7-common/mkbootimg.mk
@@ -44,6 +44,9 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
 # Recovery
 RECOVERY_VARIANT := twrp
+
+# Dummy
+TARGET_RECOVERY_FSTAB := device/oppo/find7-common/rootdir/etc/fstab.qcom
 
 # TWRP specific build flags
 # Resolution set to Find 7a resolution to support unified resources
