@@ -75,7 +75,7 @@ static bool has_unified_layout()
         ERROR("could not determine size of %s: %s\n", datadevice, strerror(errno));
         goto cleanup;
     }
-    if (size > 4*(10^9)) { // if the data partition is larger then 4GB we probably have unified layout
+    if (size > 7*(10^9)) { // if the data partition is larger then 7GB we probably have unified layout
         unified = true;
     }
 
