@@ -12,7 +12,11 @@ service qhdcp /sbin/qhdcp.sh
     disabled
 
 on property:ro.oppo.device=find7s
+    setprop ro.product.device find7
     start qhdcp
+
+on property:ro.oppo.device=find7a
+    setprop ro.product.device find7a
 
 on property:ro.oppo.layout=unified
    symlink /etc/twrp.fstab.ufd /etc/twrp.fstab
