@@ -30,6 +30,7 @@
 
 #include <fcntl.h>
 #include <linux/fs.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
@@ -64,6 +65,7 @@ static bool has_unified_layout()
 {
     const char* datadevice="/dev/block/mmcblk0p15";
     uint64_t size = 0;
+    uint64_t border = 7 * pow(10, 9);
     bool unified = false;
 
     int fd = open(datadevice, O_RDONLY);
@@ -75,7 +77,9 @@ static bool has_unified_layout()
         ERROR("could not determine size of %s: %s\n", datadevice, strerror(errno));
         goto cleanup;
     }
-    if (size > 7*(10^9)) { // if the data partition is larger then 7GB we probably have unified layout
+
+    // if the data partition is larger than 7GB we probably have unified layout
+    if (size > border) {
         unified = true;
     }
 
