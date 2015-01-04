@@ -22,9 +22,9 @@ on early-init
     wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
 
     # scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
-    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    exec_context u:r:lvm:s0 /sbin/lvm vgscan --mknodes --ignorelockingfailure
     # activate any partitions found
-    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+    exec_context u:r:lvm:s0 /sbin/lvm vgchange -aly --ignorelockingfailure
 
     # copy fstab and init.rc depending on storage layout
     exec /sbin/static/busybox sh /storage_earlyinit.sh

@@ -1,1 +1,9 @@
 allow init rootfs:file { write create unlink append };
+
+# lvm support
+
+allow init lvm_placeholder:process dyntransition;
+allow init self:process setcurrent;
+
+allow init lvm_device:blk_file { getattr relabelto };
+allow init device:blk_file { relabelfrom };
