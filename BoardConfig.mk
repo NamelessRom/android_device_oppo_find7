@@ -30,13 +30,13 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1364320256
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221225472
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7-common/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/mkbootimg.mk
 TARGET_KERNEL_CONFIG := custom_find7_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.selinux=permissive
 KERNEL_TOOLCHAIN     := prebuilts/gcc/linux-x86/arm/sm-arm-eabi-4.9/bin
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7-common/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -52,7 +52,10 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 RECOVERY_VARIANT := twrp
 
 # Dummy
-TARGET_RECOVERY_FSTAB := device/oppo/find7-common/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7u,find7a,find7au,find7s,find7su
 
 # TWRP specific build flags
 # Resolution set to Find 7a resolution to support unified resources
@@ -66,8 +69,7 @@ TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # SELinux policies
-BOARD_SEPOLICY_DIRS += \
-        device/oppo/find7-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
 
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
