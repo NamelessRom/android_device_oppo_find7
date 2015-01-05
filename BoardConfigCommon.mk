@@ -65,5 +65,9 @@ TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
+# SELinux policies
+BOARD_SEPOLICY_DIRS += \
+        device/oppo/find7-common/sepolicy
+
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
