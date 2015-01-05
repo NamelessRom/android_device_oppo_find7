@@ -70,6 +70,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/qhdcp.sh $(TARGET_RECOVERY_ROOT_OUT)/sbin
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
+	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.lvm $(TARGET_RECOVERY_ROOT_OUT)/etc
 	## TWRP build are universal for find7s/find7a, unified/non-unified
 	## ro.product.device is set in init	to find7/find7a
 	$(hide) sed -ie 's/^\(ro.product.device=\)/# \1/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop

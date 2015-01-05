@@ -1,1 +1,1 @@
-allow init rootfs:file { write create };
+allow init rootfs:file { write create unlink append };

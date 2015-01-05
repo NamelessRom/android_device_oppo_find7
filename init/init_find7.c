@@ -33,6 +33,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/ioctl.h>
 
 #include "vendor_init.h"
@@ -89,9 +90,16 @@ out:
     return unified;
 }
 
+static bool has_lvm()
+{
+  return ( access("/dev/lvpool/userdata", F_OK ) == 0 );
+}
+
 static void set_oppo_layout()
 {
-    if (has_unified_layout()) {
+    if (has_lvm()) {
+        property_set("ro.oppo.layout", "lvm");
+    } else if (has_unified_layout()) {
         property_set("ro.oppo.layout", "unified");
     } else {
         property_set("ro.oppo.layout", "standard");

@@ -21,10 +21,17 @@ on early-init
     wait /dev/block/platform/msm_sdcc.1/by-name/userdata
     wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
 
-    # copy fstab and init.rc depending on if we are unified or not
+    # scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
+    exec /sbin/lvm vgscan --mknodes --ignorelockingfailure
+    # activate any partitions found
+    exec /sbin/lvm vgchange -aly --ignorelockingfailure
+
+    # copy fstab and init.rc depending on storage layout
     exec /sbin/static/busybox sh /storage_earlyinit.sh
 
 on fs
+    # this will safely error out on non-lvm configs
+    restorecon /dev/mapper/lvpool-userdata
     mount_all /fstab.qcom
     setprop ro.crypto.fuse_sdcard true
 
@@ -104,7 +111,10 @@ on property:vold.decrypt=trigger_restart_framework
 # Override storage list for MountService according to detected
 # storage layout.
 on property:ro.oppo.layout=unified
-    setprop ro.storage_list.override storage_list_ufd
+    setprop ro.storage_list.override storage_list_emu
+
+on property:ro.oppo.layout=lvm
+    setprop ro.storage_list.override storage_list_emu
 
 # This can be removed once there are no more special unified builds
 # and the default layout is always the standard layout.

@@ -26,8 +26,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom.std \
     fstab.qcom.ufd \
+    fstab.qcom.lvm \
+    lvm \
+    lvm.conf \
     init.fs.rc.std \
-    init.fs.rc.ufd \
+    init.fs.rc.emu \
     init.qcom.rc \
     init.qcom.usb.rc \
     storage_earlyinit.sh \
