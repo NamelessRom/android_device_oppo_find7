@@ -85,8 +85,8 @@ PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
 # Device uses high-density artwork where available
 # Also hack it to be compatible with Find7a and Find7s
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi 520dpi xxxhdpi
-PRODUCT_AAPT_PREF_CONFIG := 520dpi
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi 530dpi xxxhdpi
+PRODUCT_AAPT_PREF_CONFIG := 530dpi
 
 # Build description
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=4.4.2/KVT49L/1390465867:user/release-keys PRIVATE_BUILD_DESC="msm8974-user 4.4.2 KVT49L eng.root.20141017.144947 release-keys"
