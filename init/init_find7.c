@@ -59,11 +59,13 @@ static void import_kernel_nv(char *name, int for_emulator)
             property_set("ro.power_profile.override", "power_profile_find7s");
             property_set("ro.sf.lcd_density", "530");
             property_set("ro.sf.lcd_density.max", "640");
+            property_set("ro.sf.lcd_density.override", "640");
         } else {
             property_set("ro.oppo.device", "find7a");
             property_set("ro.power_profile.override", "power_profile_find7a");
             property_set("ro.sf.lcd_density", "480");
             property_set("ro.sf.lcd_density.max", "560");
+            property_set("ro.sf.lcd_density.override", "480");
         }
     }
 }
