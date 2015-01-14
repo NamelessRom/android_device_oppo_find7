@@ -103,3 +103,6 @@ $(call inherit-product-if-exists, vendor/oppo/find7/find7-vendor.mk)
 
 # Inherit from msm8974-common
 $(call inherit-product, device/oppo/msm8974-common/msm8974.mk)
+
+# Include extras
+$(call inherit-product-if-exists, vendor/extra/find7/extra.mk)
