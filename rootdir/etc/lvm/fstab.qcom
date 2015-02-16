@@ -17,4 +17,4 @@
 
 /devices/msm_sdcc.2/mmc_host*                       auto            auto    uid=1023,gid=1023,fmask=0007,dmask=0007 voldmanaged=sdcard1:auto
 
-/devices/platform/xhci-hcd                          auto            auto    defaults voldmanaged=usbdisk:auto
+/devices/platform/xhci-hcd*                         auto            auto    defaults voldmanaged=usbdisk:auto
