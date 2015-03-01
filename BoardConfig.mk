@@ -44,6 +44,10 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 
+# Setupwizard
+BOARD_SETUP_WIZARD_CLASS := device/oppo/find7/setupwizard/src
+BOARD_SETUP_WIZARD_RESOURCES := device/oppo/find7/setupwizard/res
+
 # Recovery
 RECOVERY_VARIANT := twrp
 
