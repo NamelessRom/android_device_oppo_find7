@@ -25,11 +25,6 @@ import android.preference.PreferenceManager;
 public class ColorEnhancement {
     public static final String TAG = "color_enhancement";
 
-    private static final String KCAL_ENABLE = "/sys/devices/platform/kcal_ctrl.0/kcal_enable";
-    private static final String KCAL = "/sys/devices/platform/kcal_ctrl.0/kcal";
-    private static final String KCAL_MIN = "/sys/devices/platform/kcal_ctrl.0/kcal_min";
-    private static final String KCAL_INVERT = "/sys/devices/platform/kcal_ctrl.0/kcal_invert";
-    private static final String KCAL_HUE = "/sys/devices/platform/kcal_ctrl.0/kcal_hue";
     private static final String KCAL_SAT = "/sys/devices/platform/kcal_ctrl.0/kcal_sat";
     private static final String KCAL_VAL = "/sys/devices/platform/kcal_ctrl.0/kcal_val";
     private static final String KCAL_CONT = "/sys/devices/platform/kcal_ctrl.0/kcal_cont";
@@ -38,11 +33,6 @@ public class ColorEnhancement {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.edit().putBoolean(TAG, enable).apply();
 
-        FileUtils.writeLine(KCAL_ENABLE, "1");
-        FileUtils.writeLine(KCAL, "256 256 256");
-        FileUtils.writeLine(KCAL_MIN, "35");
-        FileUtils.writeLine(KCAL_INVERT, "0");
-        FileUtils.writeLine(KCAL_HUE, "0");
         FileUtils.writeLine(KCAL_SAT, enable ? "275" : "255");
         FileUtils.writeLine(KCAL_VAL, enable ? "251" : "255");
         FileUtils.writeLine(KCAL_CONT, enable ? "258" : "255");
