@@ -32,34 +32,13 @@ on early-init
 on fs
     # this will safely error out on non-lvm configs
     restorecon /dev/mapper/lvpool-userdata
+
     mount_all /fstab.qcom
-    setprop ro.crypto.fuse_sdcard true
 
 on init
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage 0550 system sdcard_r
-    mkdir /storage/emulated 0555 root root
-
-    # External storage directories
-    mkdir /mnt/media_rw/sdcard0 0755 media_rw media_rw
-    mkdir /mnt/media_rw/sdcard1 0755 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-
-    # export environmental values, depending on if we are unified or not
-    export_rc init.fs.rc
-
-    mkdir /storage/sdcard0 0700 root root
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbdisk 0700 root root
-
-    symlink /storage/sdcard1 /extSdCard
-    symlink /storage/sdcard1 /mnt/extSdCard
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
-
-    # initialize storage depending on if we are unified or not
-    exec /sbin/static/busybox sh /storage_init.sh
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
 on post-fs-data
     # Torch
@@ -82,41 +61,3 @@ on boot
     chown system system /sys/class/leds/led:rgb_blue/ramp_step_ms
     chown system system /sys/class/leds/led:rgb_blue/duty_pcts
     chown system system /sys/class/leds/led:rgb_blue/blink
-
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
-    class late_start
-    disabled
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
-on property:ro.fuse_sdcard=true
-    start sdcard
-
-# This will make sure that sdcard service starts as late_start.
-on nonencrypted
-    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-on property:vold.decrypt=trigger_restart_framework
-    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-# Override storage list for MountService according to detected
-# storage layout.
-on property:ro.oppo.layout=unified
-    setprop ro.storage_list.override storage_list_emu
-
-on property:ro.oppo.layout=lvm
-    setprop ro.storage_list.override storage_list_emu
-
-# This can be removed once there are no more special unified builds
-# and the default layout is always the standard layout.
-on property:ro.oppo.layout=standard
-    setprop ro.storage_list.override storage_list_std
