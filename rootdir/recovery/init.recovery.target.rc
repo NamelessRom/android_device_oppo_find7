@@ -12,13 +12,8 @@ on early-init
     # activate any partitions found
     exec /sbin/lvm vgchange -aly --ignorelockingfailure
 
-service qhdcp /sbin/qhdcp.sh
-    oneshot
-    disabled
-
 on property:ro.oppo.device=find7s
     setprop ro.product.device find7
-    start qhdcp
 
 on property:ro.oppo.device=find7a
     setprop ro.product.device find7a

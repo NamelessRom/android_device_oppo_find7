@@ -59,8 +59,7 @@ TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
 TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7u,find7a,find7au,find7s,find7su
 
 # TWRP specific build flags
-# Resolution set to Find 7a resolution to support unified resources
-DEVICE_RESOLUTION    := 1080x1920
+TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_NO_USB_STORAGE := true
 TW_INCLUDE_JB_CRYPTO := false

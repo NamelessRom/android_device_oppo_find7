@@ -62,19 +62,12 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 		$(recovery_uncompressed_ramdisk) \
 		$(recovery_kernel) \
 		$(MINIGZIP)
-	@echo -e ${CL_CYN}"----- Copying 1440x2560 resources ------"${CL_RST}
-	$(hide) rm -rf $(TARGET_RECOVERY_ROOT_OUT)/qhdres
-	$(hide) cp -R $(call project-path-for,recovery)/gui/devices/1440x2560/res $(TARGET_RECOVERY_ROOT_OUT)/qhdres
 	@echo -e ${CL_CYN}"----- Copying configuration files ------"${CL_RST}
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/init.recovery.target.rc $(TARGET_RECOVERY_ROOT_OUT)
-	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/qhdcp.sh $(TARGET_RECOVERY_ROOT_OUT)/sbin
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.lvm $(TARGET_RECOVERY_ROOT_OUT)/etc
-	## TWRP build are universal for find7s/find7a, unified/non-unified
-	## ro.product.device is set in init	to find7/find7a
 	$(hide) sed -ie 's/^\(ro.product.device=\)/# \1/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
-	## set obsolete ro.build.product to a generic "find7" for older install-scripts
 	$(hide) sed -ie 's/^\(ro.build.product=\).*/\1find7/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
 	@echo -e ${CL_CYN}"----- Making recovery ramdisk ------"${CL_RST}
 	$(hide) rm -f $(recovery_uncompressed_ramdisk)
