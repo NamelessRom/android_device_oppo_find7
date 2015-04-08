@@ -18,10 +18,12 @@
 
 package org.namelessrom.device.extra;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
+import android.view.MenuItem;
 
 @SuppressWarnings("deprecation")
 public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
@@ -34,8 +36,24 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.device_settings);
 
+        final ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         mColorEnhancement = (SwitchPreference) findPreference(KEY_COLOR_ENHANCEMENT);
         mColorEnhancement.setOnPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
