@@ -42,7 +42,11 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         }
 
         mColorEnhancement = (SwitchPreference) findPreference(KEY_COLOR_ENHANCEMENT);
-        mColorEnhancement.setOnPreferenceChangeListener(this);
+        if (ColorEnhancement.isSupported()) {
+            mColorEnhancement.setOnPreferenceChangeListener(this);
+        } else {
+            mColorEnhancement.setEnabled(false);
+        }
     }
 
     @Override

@@ -29,6 +29,12 @@ public class ColorEnhancement {
     private static final String KCAL_VAL = "/sys/devices/platform/kcal_ctrl.0/kcal_val";
     private static final String KCAL_CONT = "/sys/devices/platform/kcal_ctrl.0/kcal_cont";
 
+    public static boolean isSupported() {
+        return FileUtils.fileExists(KCAL_SAT)
+                && FileUtils.fileExists(KCAL_VAL)
+                && FileUtils.fileExists(KCAL_CONT);
+    }
+
     public static void setColorEnhancement(Context context, boolean enable) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.edit().putBoolean(TAG, enable).apply();

@@ -22,6 +22,7 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,6 +33,13 @@ public final class FileUtils {
     private static final String TAG = "FileUtils";
 
     private FileUtils() { }
+
+    /**
+     * Checks if the current File, given as path, exists.
+     */
+    public static boolean fileExists(final String path) {
+        return new File(path).exists();
+    }
 
     /**
      * Reads the first line of text from the given file
