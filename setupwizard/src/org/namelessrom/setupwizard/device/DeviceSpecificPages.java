@@ -34,10 +34,11 @@ public class DeviceSpecificPages {
      */
     public DeviceSpecificPages(Context context, SetupDataCallbacks callbacks) {
         // size should be the number of pages you are adding
-        mPages = new ArrayList<>(1);
+        mPages = new ArrayList<>(2);
 
         // you should add your pages here now
-        mPages.add(new DeviceSpecificPage(context, callbacks));
+        mPages.add(new OppoGestureSpecificPage(context, callbacks));
+        mPages.add(new Find7SpecificPage(context, callbacks));
     }
 
     /**

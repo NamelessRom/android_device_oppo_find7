@@ -40,10 +40,10 @@ import com.cyanogenmod.setupwizard.ui.SetupPageFragment;
 import org.namelessrom.setupwizard.R;
 import org.namelessrom.setupwizard.SetupWizardApp;
 
-public class DeviceSpecificPage extends SetupPage {
-    public static final String TAG = "DeviceSpecificPage";
+public class Find7SpecificPage extends SetupPage {
+    public static final String TAG = "Find7SpecificPage";
 
-    public DeviceSpecificPage(Context context, SetupDataCallbacks callbacks) {
+    public Find7SpecificPage(Context context, SetupDataCallbacks callbacks) {
         super(context, callbacks);
     }
 
@@ -123,4 +123,5 @@ public class DeviceSpecificPage extends SetupPage {
         }
 
     }
+
 }
