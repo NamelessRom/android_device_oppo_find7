@@ -44,7 +44,7 @@
         </activity>
 
         <receiver android:name="org.namelessrom.device.extra.receivers.Startup">
-            <intent-filter>
+            <intent-filter android:priority="900">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
