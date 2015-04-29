@@ -22,13 +22,6 @@ vendor/lib/libchromatix_imx214_video_binning_find7s.so
 vendor/lib/libchromatix_imx214_video_cmcc.so
 vendor/lib/libchromatix_imx214_video_hdr.so
 vendor/lib/libchromatix_imx214_video_hdr_find7s.so
-vendor/lib/libchromatix_ov16825_common.so
-vendor/lib/libchromatix_ov16825_default_video.so
-vendor/lib/libchromatix_ov16825_hfr_120.so
-vendor/lib/libchromatix_ov16825_hfr_60.so
-vendor/lib/libchromatix_ov16825_liveshot.so
-vendor/lib/libchromatix_ov16825_preview.so
-vendor/lib/libchromatix_ov16825_snapshot.so
 vendor/lib/libchromatix_ov5648_common.so
 vendor/lib/libchromatix_ov5648_default_video.so
 vendor/lib/libchromatix_ov5648_default_video_find7s.so
@@ -39,7 +32,6 @@ vendor/lib/libchromatix_ov5648_video_cmcc.so
 vendor/lib/libchromatix_ov5648_zsl.so
 vendor/lib/libchromatix_ov5648_zsl_fb.so
 vendor/lib/libchromatix_ov5648_zsl_find7s.so
-vendor/lib/libmmcamera_ov16825.so
 
 # NFC
 etc/firmware/libpn544_fw.so:vendor/firmware/libpn544_fw.so
