@@ -12,12 +12,6 @@ on early-init
     # activate any partitions found
     exec /sbin/lvm vgchange -aly --ignorelockingfailure
 
-on property:ro.oppo.device=find7s
-    setprop ro.product.device FIND7
-
-on property:ro.oppo.device=find7a
-    setprop ro.product.device FIND7
-
 on property:ro.oppo.layout=unified
    symlink /etc/twrp.fstab.ufd /etc/twrp.fstab
 

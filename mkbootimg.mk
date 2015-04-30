@@ -67,7 +67,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.lvm $(TARGET_RECOVERY_ROOT_OUT)/etc
-	$(hide) sed -ie 's/^\(ro.product.device=\)/# \1/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
+	$(hide) sed -ie 's/^\(ro.product.device=\).*/\1FIND7/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
 	$(hide) sed -ie 's/^\(ro.build.product=\).*/\1FIND7/' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
 	@echo -e ${CL_CYN}"----- Making recovery ramdisk ------"${CL_RST}
 	$(hide) rm -f $(recovery_uncompressed_ramdisk)
