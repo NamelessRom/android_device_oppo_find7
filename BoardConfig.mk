@@ -77,6 +77,7 @@ BOARD_SEPOLICY_UNION += \
     init.te \
     init_shell.te \
     lvm.te \
+    vold.te \
 
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
