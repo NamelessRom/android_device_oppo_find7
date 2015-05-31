@@ -1,5 +1,27 @@
 # Camera
 lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so
+vendor/lib/libchromaflash.so
+vendor/lib/libllvd_smore.so
+vendor/lib/libmmcamera2_is.so
+vendor/lib/libmmcamera2_q3a_special.so
+vendor/lib/libmmcamera_chromaflash_lib.so
+vendor/lib/libmmcamera_imx214.so
+vendor/lib/libmmcamera_llvd.so
+vendor/lib/libmmcamera_optizoom_lib.so
+vendor/lib/libmmcamera_ov5648.so
+vendor/lib/libmmcamera_stillmore_lib.so
+vendor/lib/libmmcamera_ubifocus_lib.so
+vendor/lib/liboptizoom.so
+vendor/lib/libseemore.so
+vendor/lib/libt2tmanager.so
+vendor/lib/libubifocus.so
+
+# Camera Actuator
+vendor/lib/libactuator_dw9714.so
+vendor/lib/libactuator_dw9714_camera.so
+vendor/lib/libactuator_dw9714_camcorder.so
+
+# Camera Chromatix
 vendor/lib/libchromatix_imx214_common.so
 vendor/lib/libchromatix_imx214_default_video.so
 vendor/lib/libchromatix_imx214_default_video_find7s.so
@@ -19,16 +41,16 @@ vendor/lib/libchromatix_imx214_snapshot_hdr.so
 vendor/lib/libchromatix_imx214_snapshot_hdr_find7s.so
 vendor/lib/libchromatix_imx214_video_binning.so
 vendor/lib/libchromatix_imx214_video_binning_find7s.so
-vendor/lib/libchromatix_imx214_video_cmcc.so
 vendor/lib/libchromatix_imx214_video_hdr.so
 vendor/lib/libchromatix_imx214_video_hdr_find7s.so
 vendor/lib/libchromatix_ov5648_common.so
 vendor/lib/libchromatix_ov5648_default_video.so
 vendor/lib/libchromatix_ov5648_default_video_find7s.so
+vendor/lib/libchromatix_ov5648_liveshot.so
+vendor/lib/libchromatix_ov5648_liveshot_find7s.so
 vendor/lib/libchromatix_ov5648_preview.so
 vendor/lib/libchromatix_ov5648_preview_fb.so
 vendor/lib/libchromatix_ov5648_preview_find7s.so
-vendor/lib/libchromatix_ov5648_video_cmcc.so
 vendor/lib/libchromatix_ov5648_zsl.so
 vendor/lib/libchromatix_ov5648_zsl_fb.so
 vendor/lib/libchromatix_ov5648_zsl_find7s.so
