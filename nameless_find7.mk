@@ -80,6 +80,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     DeviceExtra \
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8974
+
 PRODUCT_NAME := nameless_find7
 PRODUCT_DEVICE := find7
 PRODUCT_BRAND := OPPO
