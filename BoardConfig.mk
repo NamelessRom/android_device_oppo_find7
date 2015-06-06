@@ -58,6 +58,9 @@ TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
 # Assert
 TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7u,find7a,find7au,find7s,find7su
 
+# Power
+TARGET_POWERHAL_VARIANT := find7
+
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true

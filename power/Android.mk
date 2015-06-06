@@ -16,10 +16,14 @@
 
 LOCAL_PATH:= $(call my-dir)
 
+ifeq ($(TARGET_POWERHAL_VARIANT),find7)
+
 include $(CLEAR_VARS)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_SRC_FILES := power_find7.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := power.find7
+LOCAL_MODULE := power.msm8974
 include $(BUILD_SHARED_LIBRARY)
+
+endif
