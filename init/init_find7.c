@@ -41,6 +41,59 @@
 #include "log.h"
 #include "util.h"
 
+static void set_xxhdpi_properties()
+{
+    INFO("Setting xxhdpi properties!");
+
+    // dalvik
+    property_set("dalvik.vm.heapstartsize", "16m");
+    property_set("dalvik.vm.heapgrowthlimit", "192m");
+    property_set("dalvik.vm.heapsize", "512m");
+    property_set("dalvik.vm.heaptargetutilization", "0.75");
+    property_set("dalvik.vm.heapminfree", "2m");
+    property_set("dalvik.vm.heapmaxfree", "8m");
+
+    // hwui
+    property_set("ro.hwui.texture_cache_size", "72");
+    property_set("ro.hwui.layer_cache_size", "48");
+    property_set("ro.hwui.r_buffer_cache_size", "8");
+    property_set("ro.hwui.path_cache_size", "32");
+    property_set("ro.hwui.gradient_cache_size", "1");
+    property_set("ro.hwui.drop_shadow_cache_size", "6");
+    property_set("ro.hwui.texture_cache_flushrate", "0.4");
+    property_set("ro.hwui.text_small_cache_width", "1024");
+    property_set("ro.hwui.text_small_cache_height", "1024");
+    property_set("ro.hwui.text_large_cache_width", "2048");
+    property_set("ro.hwui.text_large_cache_height", "1024");
+}
+
+static void set_xxxhdpi_properties()
+{
+    INFO("Setting xxxhdpi properties!");
+
+    // dalvik
+    property_set("dalvik.vm.heapstartsize", "8m");
+    property_set("dalvik.vm.heapgrowthlimit", "256m");
+    property_set("dalvik.vm.heapsize", "512m");
+    property_set("dalvik.vm.heaptargetutilization", "0.75");
+    property_set("dalvik.vm.heapminfree", "2m");
+    property_set("dalvik.vm.heapmaxfree", "8m");
+
+    // hwui
+    property_set("ro.hwui.texture_cache_size", "88");
+    property_set("ro.hwui.layer_cache_size", "58");
+    property_set("ro.hwui.r_buffer_cache_size", "8");
+    property_set("ro.hwui.path_cache_size", "32");
+    property_set("ro.hwui.gradient_cache_size", "2");
+    property_set("ro.hwui.drop_shadow_cache_size", "8");
+    property_set("ro.hwui.shape_cache_size", "4");
+    //property_set("ro.hwui.texture_cache_flushrate", "0.4");
+    property_set("ro.hwui.text_small_cache_width", "2048");
+    property_set("ro.hwui.text_small_cache_height", "2048");
+    property_set("ro.hwui.text_large_cache_width", "4096");
+    property_set("ro.hwui.text_large_cache_height", "4096");
+}
+
 static void import_kernel_nv(char *name, int for_emulator)
 {
     char *value = strchr(name, '=');
@@ -60,12 +113,14 @@ static void import_kernel_nv(char *name, int for_emulator)
             property_set("ro.sf.lcd_density", "530");
             property_set("ro.sf.lcd_density.max", "640");
             property_set("ro.sf.lcd_density.override", "640");
+            set_xxxhdpi_properties();
         } else {
             property_set("ro.oppo.device", "find7a");
             property_set("ro.power_profile.override", "power_profile_find7a");
             property_set("ro.sf.lcd_density", "480");
             property_set("ro.sf.lcd_density.max", "560");
             property_set("ro.sf.lcd_density.override", "480");
+            set_xxhdpi_properties();
         }
     }
 }
