@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
     storage_earlyinit.sh \
-    storage_init.sh
+    storage_init.sh \
+    detect_storage_layout.sh
 
 # Audio
 PRODUCT_COPY_FILES += \

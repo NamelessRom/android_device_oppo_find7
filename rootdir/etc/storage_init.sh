@@ -1,9 +1,10 @@
 #!/sbin/static/busybox
 export PATH=/sbin/static:/sbin
+export TAG=`busybox basename "$0"`
 
-if [ -e /dev/lvpool/userdata ] ||
-    # if the userdata partition is larger then 7000 MB we probably have Coldbird's unified layout
-    [ `busybox blockdev --getsize64 /dev/block/platform/msm_sdcc.1/by-name/userdata | busybox sed -e 's/\([0-9]*\)[0-9]\{6\}/\1/'` -gt 7000 ]; then
+source detect_storage_layout.sh
+
+if [ ! -z $LVM ] || [ ! -z $UNIFIED ]; then
     busybox ln -s /storage/emulated/legacy /sdcard
     busybox ln -s /storage/emulated/legacy /mnt/sdcard
     busybox ln -s /storage/emulated/legacy /storage/sdcard0
