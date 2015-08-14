@@ -64,6 +64,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 		$(MINIGZIP)
 	@echo -e ${CL_CYN}"----- Copying configuration files ------"${CL_RST}
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/init.recovery.target.rc $(TARGET_RECOVERY_ROOT_OUT)
+	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/storage_init_recovery.sh $(TARGET_RECOVERY_ROOT_OUT)/sbin/
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.lvm $(TARGET_RECOVERY_ROOT_OUT)/etc
