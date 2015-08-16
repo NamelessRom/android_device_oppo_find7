@@ -5,7 +5,7 @@ export TAG=`busybox basename "$0"`
 /sbin/lvm vgscan --mknodes --ignorelockingfailure
 /sbin/lvm vgchange -aly --ignorelockingfailure
 
-source detect_storage_layout.sh
+source /detect_storage_layout.sh
 
 if [ ! -z "$LVM" ]; then
     busybox cp /init.fs.rc.emu /init.fs.rc
