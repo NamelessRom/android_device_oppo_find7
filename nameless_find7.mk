@@ -99,7 +99,9 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 530dpi
 
 # Build description
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=4.4.2/KVT49L/1390465867:user/release-keys PRIVATE_BUILD_DESC="msm8974-user 4.4.2 KVT49L eng.root.20141017.144947 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_FINGERPRINT=5.0/LRX21M/1426582430:user/release-keys \
+    PRIVATE_BUILD_DESC="msm8974-user 5.0 LRX21M 193 release-keys"
 
 # NOTE: dalvik heap and hwui memory ARE set in init depending on device
 # call dalvik heap config
