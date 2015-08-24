@@ -40,10 +40,10 @@
     <ctl name="ADC5 Volume" value="0" />
     <ctl name="ADC6 Volume" value="0" />
     <ctl name="DEC1 Volume" value="0" />
-    <ctl name="DEC2 Volume" value="0" />
-    <ctl name="DEC3 Volume" value="0" />
+    <ctl name="DEC2 Volume" value="84" />
+    <ctl name="DEC3 Volume" value="84" />
     <ctl name="DEC4 Volume" value="84" />
-    <ctl name="DEC5 Volume" value="0" />
+    <ctl name="DEC5 Volume" value="84" />
     <ctl name="DEC6 Volume" value="0" />
     <ctl name="DEC7 Volume" value="0" />
     <ctl name="DEC8 Volume" value="0" />
@@ -276,6 +276,45 @@
     <path name="low-latency-playback speaker-and-usb-headphones">
         <path name="low-latency-playback usb-headphones" />
         <path name="low-latency-playback" />
+    </path>
+
+    <path name="audio-ull-playback">
+        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia3" value="1" />
+    </path>
+
+    <path name="audio-ull-playback speaker-protected">
+        <path name="audio-ull-playback" />
+    </path>
+
+    <path name="audio-ull-playback headphones">
+      <path name="audio-ull-playback" />
+    </path>
+
+    <path name="audio-ull-playback speaker-and-headphones">
+        <path name="audio-ull-playback" />
+        <path name="audio-ull-playback headphones" />
+    </path>
+
+    <path name="audio-ull-playback hdmi">
+        <ctl name="HDMI Mixer MultiMedia3" value="1" />
+    </path>
+
+    <path name="audio-ull-playback bt-sco">
+        <ctl name="AUX_PCM_RX Audio Mixer MultiMedia3" value="1" />
+    </path>
+
+    <path name="audio-ull-playback bt-sco-wb">
+        <ctl name="AUX PCM SampleRate" value="16000" />
+        <path name="audio-ull-playback bt-sco" />
+    </path>
+
+    <path name="audio-ull-playback speaker-and-hdmi">
+        <path name="audio-ull-playback hdmi" />
+        <path name="audio-ull-playback" />
+    </path>
+
+    <path name="audio-ull-playback afe-proxy">
+        <ctl name="AFE_PCM_RX Audio Mixer MultiMedia3" value="1" />
     </path>
 
     <path name="multi-channel-playback afe-proxy">
@@ -753,26 +792,22 @@
     <path name="hph-mic">
         <ctl name="DEC5 MUX" value="ADC2" />
         <ctl name="IIR1 INP1 MUX" value="DEC5" />
-        <ctl name="DEC5 Volume" value="84" />
     </path>
 
     <path name="main-mic">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1"/>
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
-        <ctl name="DEC4 Volume" value="84" />
     </path>
 
     <path name="sec-mic">
         <ctl name="DEC3 MUX" value="ADC4" />
         <ctl name="ADC4 Volume" value="19" />
-        <ctl name="DEC3 Volume" value="84" />
     </path>
 
     <path name="anc-mic">
         <ctl name="DEC2 MUX" value="ADC5" />
         <ctl name="ADC5 Volume" value="19" />
-        <ctl name="DEC2 Volume" value="84" />
     </path>
 
 
@@ -855,10 +890,8 @@
         <ctl name="SLIM_0_TX Channels" value="Two" />
         <ctl name="SLIM TX7 MUX" value="DEC4" />
         <ctl name="DEC4 MUX" value="ADC3" />
-        <ctl name="DEC4 Volume" value="84" />
         <ctl name="SLIM TX8 MUX" value="DEC3" />
         <ctl name="DEC3 MUX" value="ADC4" />
-        <ctl name="DEC3 Volume" value="84" />
     </path>
 
     <path name="dmic-endfire">
@@ -881,9 +914,7 @@
         <ctl name="DEC4 MUX" value="ADC3" />
         <ctl name="SLIM_0_TX Channels" value="Two" />
         <ctl name="ADC4 Volume" value="19" />
-        <ctl name="DEC3 Volume" value="84" />
         <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC4 Volume" value="84" />
         <ctl name="SLIM_0_RX Format" value="S16_LE" />
     </path>
 
