@@ -80,6 +80,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8974
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.deep_buffer.media=true
+
 PRODUCT_NAME := nameless_find7
 PRODUCT_DEVICE := find7
 PRODUCT_BRAND := OPPO
