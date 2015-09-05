@@ -38,6 +38,8 @@
 #define BOOSTPULSE_INTERACTIVE "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
 #define NOTIFY_ON_MIGRATE "/dev/cpuctl/cpu.notify_on_migrate"
 
+#define DEFAULT_DURATION 1000
+
 static int last_state = -1;
 
 struct find7_power_module {
@@ -100,12 +102,11 @@ static void power_init(struct power_module *module)
     socket_init(find);
 }
 
-static void touch_boost(struct power_module *module, void *data)
+static void touch_boost(struct power_module *module, void *data, int duration)
 {
     struct find7_power_module *find = (struct find7_power_module *) module;
     int len;
     char buf[80];
-    int duration = 1000;
 
     if (socket_init(find) < 0) {
         ALOGV("%s: boostpulse socket not created", __func__);
@@ -152,15 +153,15 @@ static void power_hint(struct power_module *module, power_hint_t hint, void *dat
     switch (hint) {
         case POWER_HINT_CPU_BOOST:
             ALOGV("%s: POWER_HINT_CPU_BOOST", __func__);
-            touch_boost(module, data);
+            touch_boost(module, data, (int) data / 1000);
             break;
         case POWER_HINT_INTERACTION:
             ALOGV("%s: POWER_HINT_INTERACTION", __func__);
-            touch_boost(module, data);
+            touch_boost(module, data, DEFAULT_DURATION);
             break;
         case POWER_HINT_LAUNCH_BOOST:
             ALOGV("%s: POWER_HINT_LAUNCH_BOOST", __func__);
-            touch_boost(module, data);
+            touch_boost(module, data, 2000);
             break;
 #if 0
         case POWER_HINT_VSYNC:
