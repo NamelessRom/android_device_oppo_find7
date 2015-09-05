@@ -158,6 +158,10 @@ static void power_hint(struct power_module *module, power_hint_t hint, void *dat
             ALOGV("%s: POWER_HINT_INTERACTION", __func__);
             touch_boost(module, data);
             break;
+        case POWER_HINT_LAUNCH_BOOST:
+            ALOGV("%s: POWER_HINT_LAUNCH_BOOST", __func__);
+            touch_boost(module, data);
+            break;
 #if 0
         case POWER_HINT_VSYNC:
             ALOGV("POWER_HINT_VSYNC %s", (data ? "ON" : "OFF"));
