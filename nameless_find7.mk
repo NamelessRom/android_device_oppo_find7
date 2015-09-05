@@ -83,7 +83,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.find7
+    power.msm8974
 
 PRODUCT_NAME := nameless_find7
 PRODUCT_DEVICE := find7
