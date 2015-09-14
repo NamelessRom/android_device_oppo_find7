@@ -5,6 +5,7 @@ on early-init
 
     # initialize storage
     start storage_init
+    wait /etc/twrp.fstab 25
 
 service storage_init /sbin/storage_init_recovery.sh
     oneshot
