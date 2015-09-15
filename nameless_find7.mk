@@ -83,6 +83,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.deep_buffer.media=true
 
+# Reduce client buffer size for fast audio output tracks
+PRODUCT_PROPERTY_OVERRIDES += \
+    af.fast_track_multiplier=1
+
+# Low latency audio buffer size in frames
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio_hal.period_size=192
+
 PRODUCT_NAME := nameless_find7
 PRODUCT_DEVICE := find7
 PRODUCT_BRAND := OPPO
