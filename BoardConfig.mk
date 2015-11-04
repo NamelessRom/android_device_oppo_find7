@@ -52,17 +52,18 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_SETUP_WIZARD_CLASS     := device/oppo/find7/setupwizard/src
 BOARD_SETUP_WIZARD_RESOURCES += device/oppo/find7/setupwizard/res
 
-# Recovery
-RECOVERY_VARIANT := twrp
-
-# Dummy
-TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
+# Power
+TARGET_POWERHAL_VARIANT := find7
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7u,find7a,find7au,find7s,find7su
 
-# Power
-TARGET_POWERHAL_VARIANT := find7
+# Dummy
+TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
+
+ifeq ($(TARGET_BUILD_TWRP),true)
+# Recovery
+RECOVERY_VARIANT := twrp
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -73,6 +74,7 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+endif
 
 # SELinux policies
 BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
