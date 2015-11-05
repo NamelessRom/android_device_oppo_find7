@@ -2,4 +2,4 @@
 # LVM sepolicy
 ###########################
 
-type lvm_device, dev_type;
+#type lvm_device, dev_type;

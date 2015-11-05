@@ -1,1 +1,1 @@
-allow vold lvm_device:blk_file rw_file_perms;
+#allow vold lvm_device:blk_file rw_file_perms;
