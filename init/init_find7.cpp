@@ -1,6 +1,6 @@
 /*
    Copyright (c) 2014, The CyanogenMod Project
-   Copyright (c) 2014, The NamelessRom Project
+   Copyright (c) 2014-2015, The NamelessRom Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -28,6 +28,7 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cerrno>
 #include <fcntl.h>
 #include <linux/fs.h>
 #include <math.h>
@@ -94,7 +95,7 @@ static void set_xxxhdpi_properties()
     property_set("ro.hwui.text_large_cache_height", "4096");
 }
 
-static void import_kernel_nv(char *name, int for_emulator)
+static void import_kernel_nv(char *name, __unused int for_emulator)
 {
     char *value = strchr(name, '=');
     int name_len = strlen(name);
