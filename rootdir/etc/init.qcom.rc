@@ -23,6 +23,7 @@ on early-init
 
     # scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
     exec_context u:r:lvm:s0 /sbin/lvm vgscan --mknodes --ignorelockingfailure
+
     # activate any partitions found
     exec_context u:r:lvm:s0 /sbin/lvm vgchange -aly --ignorelockingfailure
 

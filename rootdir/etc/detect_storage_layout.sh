@@ -3,6 +3,13 @@ export PATH=/sbin/static:/sbin
 
 # detect storage layout for find7
 
+# check for LVM first as we loop below
+if [ -e /dev/lvpool/userdata ]; then
+   LVM=1
+   busybox echo "$TAG: LVM storage layout detected" > /dev/kmsg
+   return 0
+fi
+
 # try to get the size of the userdata partition with multiple retries
 userdata_size=""
 retries=10
@@ -26,9 +33,4 @@ else
   else
     busybox echo "$TAG: did not detect Coldbird unification" > /dev/kmsg
   fi
-fi
-
-if [ -e /dev/lvpool/userdata ]; then
-   LVM=1
-   busybox echo "$TAG: LVM storage layout detected" > /dev/kmsg
 fi
