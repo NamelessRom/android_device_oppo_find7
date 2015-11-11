@@ -20,6 +20,7 @@
         android:key="color_enhancement"
         android:title="@string/color_enhancement"
         android:summary="@string/color_enhancement_summary"
+        android:defaultValue="true"
         android:persistent="true" />
 
 </PreferenceScreen>

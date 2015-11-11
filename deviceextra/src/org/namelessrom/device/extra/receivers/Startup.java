@@ -38,7 +38,7 @@ public class Startup extends BroadcastReceiver {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         // restore color enhancement
-        boolean useColorEnhancement = prefs.getBoolean(ColorEnhancement.TAG, false);
+        boolean useColorEnhancement = prefs.getBoolean(ColorEnhancement.TAG, true);
         ColorEnhancement.setColorEnhancement(context, useColorEnhancement);
     }
 
