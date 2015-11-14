@@ -79,6 +79,7 @@ BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
 
 # inherit from the proprietary version
 -include vendor/oppo/find7/BoardConfigVendor.mk
+-include vendor/oppo/find7-common/BoardConfigVendor.mk
 
 RED_LED_PATH := "/sys/class/leds/led:rgb_red/brightness"
 GREEN_LED_PATH := "/sys/class/leds/led:rgb_green/brightness"

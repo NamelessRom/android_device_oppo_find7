@@ -109,6 +109,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/find7/find7-vendor.mk)
+$(call inherit-product-if-exists, vendor/oppo/find7-common/find7-common-vendor.mk)
 
 # Inherit from msm8974-common
 $(call inherit-product, device/oppo/msm8974-common/msm8974.mk)
