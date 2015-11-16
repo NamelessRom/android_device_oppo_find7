@@ -1,6 +1,6 @@
 #
 # Copyright 2014 The CyanogenMod Project
-# Copyright 2014 The NamelessRom Project
+# Copyright 2014 - 2015 The NamelessRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,20 +15,6 @@
 # limitations under the License.
 #
 import /init.qcom-common.rc
-
-on early-init
-    # wait until data is available
-    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
-    wait /dev/block/platform/msm_sdcc.1/by-name/sdcard
-
-    # scan for LVM partitions.  Our lvm.conf restricts this to the userdata and sdcard partitions
-    exec_context u:r:lvm:s0 /sbin/lvm vgscan --mknodes --ignorelockingfailure
-
-    # activate any partitions found
-    exec_context u:r:lvm:s0 /sbin/lvm vgchange -aly --ignorelockingfailure
-
-    # copy fstab and init.rc depending on storage layout
-    exec /sbin/static/busybox sh /storage_earlyinit.sh
 
 on fs
     # this will safely error out on non-lvm configs

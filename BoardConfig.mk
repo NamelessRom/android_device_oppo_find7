@@ -20,6 +20,7 @@ include device/oppo/msm8974-common/BoardConfigCommon.mk
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_find7
+TARGET_NEEDS_PRE_INIT := true
 
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
@@ -72,6 +73,7 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
 endif
 
 # SELinux policies

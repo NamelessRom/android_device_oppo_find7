@@ -34,17 +34,28 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <unistd.h>
+#include <selinux/selinux.h>
 #include <sys/ioctl.h>
+#include <sys/sendfile.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-#include "vendor_init.h"
-#include "property_service.h"
 #include "log.h"
+#include "property_service.h"
 #include "util.h"
+#include "vendor_init.h"
+
+#define CONTEXT_PARAM "u:r:lvm:s0"
+
+#define USERDATA_PATH_LVM "/dev/lvpool/userdata"
+#define USERDATA_PATH_UNIFIED "/dev/block/mmcblk0p15"
 
 static void set_xxhdpi_properties()
 {
-    INFO("Setting xxhdpi properties!");
+    NOTICE("Setting xxhdpi properties!");
 
     // dalvik
     property_set("dalvik.vm.heapstartsize", "16m");
@@ -70,7 +81,7 @@ static void set_xxhdpi_properties()
 
 static void set_xxxhdpi_properties()
 {
-    INFO("Setting xxxhdpi properties!");
+    NOTICE("Setting xxxhdpi properties!");
 
     // dalvik
     property_set("dalvik.vm.heapstartsize", "8m");
@@ -126,20 +137,20 @@ static void import_kernel_nv(char *name, __unused int for_emulator)
     }
 }
 
-static bool has_unified_layout()
+
+bool has_unified_layout()
 {
-    const char* datadevice="/dev/block/mmcblk0p15";
     uint64_t size = 0;
     uint64_t border = 7 * pow(10, 9);
     bool unified = false;
 
-    int fd = open(datadevice, O_RDONLY);
+    int fd = open(USERDATA_PATH_UNIFIED, O_RDONLY);
     if (fd < 0 ) {
-        ERROR("could not open %s for reading: %s\n", datadevice, strerror(errno));
+        ERROR("could not open %s for reading: %s\n", USERDATA_PATH_UNIFIED, strerror(errno));
         goto out;
     }
     if (ioctl(fd, BLKGETSIZE64, &size) < 0) {
-        ERROR("could not determine size of %s: %s\n", datadevice, strerror(errno));
+        ERROR("could not determine size of %s: %s\n", USERDATA_PATH_UNIFIED, strerror(errno));
         goto cleanup;
     }
 
@@ -154,24 +165,133 @@ out:
     return unified;
 }
 
-static bool has_lvm()
+bool has_lvm()
 {
-  return ( access("/dev/lvpool/userdata", F_OK ) == 0 );
+  return (access(USERDATA_PATH_LVM, F_OK) == 0);
 }
 
-static void set_oppo_layout()
+void create_fstab(std::string ending, bool is_recovery)
 {
+    std::string fstab_dest;
+    std::string fstab_source;
+    struct stat stat_source;
+
+    if (is_recovery) {
+        fstab_dest = std::string("/etc/twrp.fstab");
+        fstab_source = std::string("/etc/twrp.fstab." + ending);
+    } else {
+        fstab_dest = std::string("/fstab.qcom");
+        fstab_source = std::string("/fstab.qcom." + ending);
+    }
+
+    int source = open(fstab_source.c_str(), O_RDONLY, 0);
+    int dest = open(fstab_dest.c_str(), O_WRONLY | O_CREAT , 0644);
+    fstat(source, &stat_source);
+    sendfile(dest, source, 0, stat_source.st_size);
+    if (source) {
+        close(source);
+    }
+    if (dest) {
+        close(dest);
+    }
+
+    NOTICE("Built fstab \"%s\" from source \"%s\"\n", fstab_dest.c_str(), fstab_source.c_str());
+}
+
+int do_exec_context(char * const command[])
+{
+    pid_t pid;
+    int status;
+
+    pid = fork();
+    if (!pid) {
+        char tmp[32];
+        int fd, sz;
+        get_property_workspace(&fd, &sz);
+        sprintf(tmp, "%d,%d", dup(fd), sz);
+        setenv("ANDROID_PROPERTY_WORKSPACE", tmp, 1);
+
+        if (is_selinux_enabled() > 0 && setexeccon(CONTEXT_PARAM) < 0) {
+            ERROR("cannot setexeccon('%s'): %s\n", CONTEXT_PARAM, strerror(errno));
+            _exit(127);
+        }
+        execve(command[0], command, environ);
+        exit(0);
+    } else {
+        waitpid(pid, &status, 0);
+        if (WEXITSTATUS(status) != 0) {
+            ERROR("exec: pid %1d exited with return code %d: %s", (int)pid, WEXITSTATUS(status), strerror(status));
+        }
+    }
+    return 0;
+}
+
+void set_oppo_layout()
+{
+    Timer t;
+    bool is_emulated;
+    bool is_recovery;
+    std::string ending;
+
     if (has_lvm()) {
         property_set("ro.oppo.layout", "lvm");
+        ending = "lvm";
+        is_emulated = true;
     } else if (has_unified_layout()) {
         property_set("ro.oppo.layout", "unified");
+        ending = "ufd";
+        is_emulated = true;
     } else {
         property_set("ro.oppo.layout", "standard");
+        ending = "std";
+        is_emulated = false;
     }
+
+    // create fstabs
+    is_recovery = (access("/etc/twrp.fstab.std", F_OK) == 0);
+    create_fstab(ending, is_recovery);
+
+    if (is_emulated) {
+        property_set("ro.crypto.fuse_sdcard", "true");
+    } else {
+        property_set("ro.vold.primary_physical", "1");
+    }
+
+    NOTICE("Setting OPPO storage layout took %.2fs.\n", t.duration());
+}
+
+void scan_for_lvm()
+{
+    Timer t;
+    char * const first_command[] = { "/sbin/lvm", "vgscan", "--mknodes", "--ignorelockingfailure", nullptr };
+    char * const second_command[] = { "/sbin/lvm", "vgchange", "-aly", "--ignorelockingfailure", nullptr };
+
+    do_exec_context(first_command);
+    do_exec_context(second_command);
+    NOTICE("Scanning for LVM took %.2fs.\n", t.duration());
+}
+
+int vendor_start_pre_init()
+{
+    Timer t;
+
+    NOTICE("Waiting for %s...\n", USERDATA_PATH_UNIFIED);
+    if (wait_for_file(USERDATA_PATH_UNIFIED, 30)) {
+        ERROR("Timed out waiting for %s\n", USERDATA_PATH_UNIFIED);
+    }
+    NOTICE("Waiting for %s took %.2fs.\n", USERDATA_PATH_UNIFIED, t.duration());
+
+    NOTICE("Scanning for LVM...");
+    scan_for_lvm();
+
+    NOTICE("Setting OPPO storage layout...");
+    set_oppo_layout();
+
+    NOTICE("Alex and Marc are awesome");
+    return 0;
 }
 
 void vendor_load_properties()
 {
     import_kernel_cmdline(0, import_kernel_nv);
-    set_oppo_layout();
 }

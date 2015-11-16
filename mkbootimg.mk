@@ -40,13 +40,8 @@ $(INSTALLED_DTIMAGE_TARGET): $(DTBTOOL) $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/u
 	$(hide) $(DTBTOOL) -2 -o $(INSTALLED_DTIMAGE_TARGET) -s $(BOARD_KERNEL_PAGESIZE) -p $(KERNEL_OUT)/scripts/dtc/ $(KERNEL_OUT)/arch/arm/boot/
 	@echo -e ${CL_CYN}"Made DT image: $@"${CL_RST}
 
- $(TARGET_ROOT_OUT)/sbin/static/busybox: $(PRODUCT_OUT)/utilities/busybox
-	@echo -e ${CL_CYN}"----- Copying static busybox to ramdisk ------"${CL_RST}
-	$(hide) mkdir -p $(TARGET_ROOT_OUT)/sbin/static
-	$(hide) cp $(PRODUCT_OUT)/utilities/busybox $(TARGET_ROOT_OUT)/sbin/static/busybox
-
 ## Overload bootimg generation
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(INSTALLED_DTIMAGE_TARGET) $(TARGET_ROOT_OUT)/sbin/static/busybox
+$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(INSTALLED_DTIMAGE_TARGET)
 	$(call pretty,"Target boot image: $@")
 	@echo -e ${CL_CYN}"----- Making boot ramdisk ------"${CL_RST}
 	$(hide) rm -f $(INSTALLED_RAMDISK_TARGET)
@@ -62,9 +57,9 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 		$(recovery_uncompressed_ramdisk) \
 		$(recovery_kernel) \
 		$(MINIGZIP)
+	$(call build-recoveryimage-target, $@)
 	@echo -e ${CL_CYN}"----- Copying configuration files ------"${CL_RST}
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/init.recovery.target.rc $(TARGET_RECOVERY_ROOT_OUT)
-	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/storage_init_recovery.sh $(TARGET_RECOVERY_ROOT_OUT)/sbin/
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.std $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.ufd $(TARGET_RECOVERY_ROOT_OUT)/etc
 	$(hide) cp $(LOCAL_PATH)/rootdir/recovery/twrp.fstab.lvm $(TARGET_RECOVERY_ROOT_OUT)/etc

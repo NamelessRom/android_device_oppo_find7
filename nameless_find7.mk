@@ -40,16 +40,13 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.qcom.lvm \
     fstab.qcom.std \
     fstab.qcom.ufd \
-    fstab.qcom.lvm \
     lvm \
     lvm.conf \
     init.qcom.rc \
     init.qcom.usb.rc \
-    storage_earlyinit.sh \
-    storage_init.sh \
-    detect_storage_layout.sh
 
 # Audio
 PRODUCT_COPY_FILES += \
