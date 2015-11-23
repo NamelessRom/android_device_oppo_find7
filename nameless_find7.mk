@@ -58,6 +58,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.msm8974
 
+# Device extra
+PRODUCT_PACKAGES += \
+    DeviceExtra \
+
 # NFC packages
 PRODUCT_PACKAGES += \
     nfc.msm8974 \
@@ -71,10 +75,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
-
-# Device extra
-PRODUCT_PACKAGES += \
-    DeviceExtra \
 
 # Power
 PRODUCT_PACKAGES += \
@@ -96,7 +96,8 @@ PRODUCT_AAPT_PREF_CONFIG := 530dpi
 # Build description
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT=5.0/LRX21M/1426582430:user/release-keys \
-    PRIVATE_BUILD_DESC="msm8974-user 5.0 LRX21M 193 release-keys"
+    PRIVATE_BUILD_DESC="msm8974-user 5.0 LRX21M 193 release-keys" \
+    TARGET_DEVICE="FIND7" \
 
 # NOTE: dalvik heap and hwui memory ARE set in init depending on device
 # call dalvik heap config
