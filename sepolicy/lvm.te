@@ -98,6 +98,8 @@ allow lvm root_block_device:blk_file { getattr };
 allow lvm nvbackup_block_device:blk_file { getattr };
 allow lvm userdata_block_device:blk_file { read open ioctl getattr };
 allow lvm persist_block_device:blk_file { getattr };
+allow lvm boot_block_device:blk_file { getattr };
+allow lvm recovery_block_device:blk_file { getattr };
 allow lvm cache_block_device:blk_file { getattr };
 allow lvm rng_device:chr_file { getattr };
 allow lvm sd_device:blk_file { getattr };

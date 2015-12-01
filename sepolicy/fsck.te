@@ -1,0 +1,5 @@
+###########################
+# LVM sepolicy
+###########################
+
+allow fsck lvm_device:blk_file { getattr read open write ioctl };
