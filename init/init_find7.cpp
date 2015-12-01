@@ -53,6 +53,10 @@
 #define USERDATA_PATH_LVM "/dev/lvpool/userdata"
 #define USERDATA_PATH_UNIFIED "/dev/block/mmcblk0p15"
 
+#define FSTAB_TYPE_NORMAL    1
+#define FSTAB_TYPE_TWRP      2
+#define FSTAB_TYPE_RECOVERY  3
+
 static void set_xxhdpi_properties()
 {
     NOTICE("Setting xxhdpi properties!");
@@ -174,18 +178,29 @@ bool has_lvm()
   return (access(USERDATA_PATH_LVM, F_OK) == 0);
 }
 
-void create_fstab(std::string ending, bool is_recovery)
+void create_fstab(std::string ending, int type)
 {
     std::string fstab_dest;
     std::string fstab_source;
     struct stat stat_source;
 
-    if (is_recovery) {
-        fstab_dest = std::string("/etc/twrp.fstab");
-        fstab_source = std::string("/etc/twrp.fstab." + ending);
-    } else {
-        fstab_dest = std::string("/fstab.qcom");
-        fstab_source = std::string("/fstab.qcom." + ending);
+    switch (type) {
+        case FSTAB_TYPE_TWRP: {
+            fstab_dest = std::string("/etc/twrp.fstab");
+            fstab_source = std::string("/etc/twrp.fstab." + ending);
+            break;
+        }
+        case FSTAB_TYPE_RECOVERY: {
+            fstab_dest = std::string("/etc/recovery.fstab");
+            fstab_source = std::string("/fstab.qcom." + ending);
+            break;
+        }
+        default:
+        case FSTAB_TYPE_NORMAL: {
+            fstab_dest = std::string("/fstab.qcom");
+            fstab_source = std::string("/fstab.qcom." + ending);
+            break;
+        }
     }
 
     int source = open(fstab_source.c_str(), O_RDONLY, 0);
@@ -234,6 +249,7 @@ void set_oppo_layout()
 {
     Timer t;
     bool is_emulated;
+    bool is_twrp;
     bool is_recovery;
     std::string ending;
 
@@ -251,9 +267,18 @@ void set_oppo_layout()
         is_emulated = false;
     }
 
-    // create fstabs
-    is_recovery = (access("/etc/twrp.fstab.std", F_OK) == 0);
-    create_fstab(ending, is_recovery);
+    // check if we are inside TWRP or normal recovery
+    is_twrp = (access("/etc/twrp.fstab.std", F_OK) == 0);
+    is_recovery = (access("/etc/recovery.fstab", F_OK) == 0);
+
+    // always create qcom fstab
+    create_fstab(ending, FSTAB_TYPE_NORMAL);
+    if (is_twrp) {
+        create_fstab(ending, FSTAB_TYPE_TWRP);
+    }
+    if (is_recovery) {
+        create_fstab(ending, FSTAB_TYPE_RECOVERY);
+    }
 
     if (is_emulated) {
         property_set("ro.crypto.fuse_sdcard", "true");
