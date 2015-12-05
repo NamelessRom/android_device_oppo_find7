@@ -35,7 +35,7 @@ on post-fs-data
     chmod 0660 /sys/class/leds/torch-light/brightness
 
 on boot
-    # For find7s notification LED
+    # Find7s notification LED
     chown system system /sys/class/leds/led:rgb_red/brightness
     chown system system /sys/class/leds/led:rgb_red/ramp_step_ms
     chown system system /sys/class/leds/led:rgb_red/duty_pcts
@@ -48,3 +48,7 @@ on boot
     chown system system /sys/class/leds/led:rgb_blue/ramp_step_ms
     chown system system /sys/class/leds/led:rgb_blue/duty_pcts
     chown system system /sys/class/leds/led:rgb_blue/blink
+
+    # cpu-boost
+    chown system system /sys/module/cpu_boost/parameters/input_boost_ms
+    chmod 664 /sys/module/cpu_boost/parameters/input_boost_ms

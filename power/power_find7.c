@@ -35,11 +35,17 @@
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
+#define NODE_MAX (64)
+
 #define BOOSTPULSE_INTERACTIVE "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
 #define NOTIFY_ON_MIGRATE "/dev/cpuctl/cpu.notify_on_migrate"
 
 #define DEFAULT_DURATION 1000
 
+#define INPUT_BOOST_MS_PATH "/sys/module/cpu_boost/parameters/input_boost_ms"
+
+static int input_boost_ms = 0;
+static int off_input_boost_ms = 0;
 static int last_state = -1;
 
 struct find7_power_module {
@@ -69,6 +75,34 @@ static int socket_init(struct find7_power_module *find)
 
     pthread_mutex_unlock(&find->lock);
     return find->boostpulse_fd;
+}
+
+static int sysfs_read(char *path, char *s, int num_bytes)
+{
+    char buf[80];
+    int count;
+    int ret = 0;
+    int fd = open(path, O_RDONLY);
+
+    if (fd < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error opening %s: %s\n", path, buf);
+
+        return -1;
+    }
+
+    if ((count = read(fd, s, num_bytes - 1)) < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error reading %s: %s\n", path, buf);
+
+        ret = -1;
+    } else {
+        s[count] = '\0';
+    }
+
+    close(fd);
+
+    return ret;
 }
 
 static int sysfs_write(const char *path, char *s)
@@ -133,6 +167,37 @@ static void touch_boost(struct power_module *module, void *data, int duration)
 
 static void power_set_interactive(__attribute__((unused)) struct power_module *module, int on)
 {
+    char tmp_str[NODE_MAX];
+    int tmp;
+
+    ALOGV("%s: %s", __func__, (on ? "ON" : "OFF"));
+    if (on) {
+        /* Display on */
+        if (!sysfs_read(INPUT_BOOST_MS_PATH, tmp_str, NODE_MAX - 1)) {
+            tmp = atoi(tmp_str);
+            if (!input_boost_ms || (input_boost_ms != tmp && off_input_boost_ms != tmp)) {
+                input_boost_ms = tmp;
+            }
+
+            snprintf(tmp_str, NODE_MAX, "%d", input_boost_ms);
+            sysfs_write(INPUT_BOOST_MS_PATH, tmp_str);
+        } else {
+            ALOGE("Failed to read %s", INPUT_BOOST_MS_PATH);
+        }
+    } else {
+        /* Display off */
+        if (!sysfs_read(INPUT_BOOST_MS_PATH, tmp_str, NODE_MAX - 1)) {
+            tmp = atoi(tmp_str);
+            if (!input_boost_ms || (input_boost_ms != tmp && off_input_boost_ms != tmp)) {
+                input_boost_ms = tmp;
+            }
+
+            snprintf(tmp_str, NODE_MAX, "%d", off_input_boost_ms);
+            sysfs_write(INPUT_BOOST_MS_PATH, tmp_str);
+        } else {
+            ALOGE("Failed to read %s", INPUT_BOOST_MS_PATH);
+        }
+    }
     if (last_state == -1) {
         last_state = on;
     } else {
@@ -142,7 +207,6 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
             last_state = on;
     }
 
-    ALOGV("%s: %s", __func__, (on ? "ON" : "OFF"));
     sysfs_write(NOTIFY_ON_MIGRATE, on ? "1" : "0");
 }
 
