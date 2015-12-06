@@ -249,7 +249,7 @@ static struct hw_module_methods_t power_module_methods = {
 };
 
 struct find7_power_module HAL_MODULE_INFO_SYM = {
-    base: {
+    .base = {
         .common = {
             .tag = HARDWARE_MODULE_TAG,
             .module_api_version = POWER_MODULE_API_VERSION_0_2,
@@ -265,7 +265,7 @@ struct find7_power_module HAL_MODULE_INFO_SYM = {
         .powerHint = power_hint,
     },
 
-    lock: PTHREAD_MUTEX_INITIALIZER,
-    boostpulse_fd: -1,
-    boostpulse_warned: 0,
+    .lock = PTHREAD_MUTEX_INITIALIZER,
+    .boostpulse_fd = -1,
+    .boostpulse_warned = 0,
 };
