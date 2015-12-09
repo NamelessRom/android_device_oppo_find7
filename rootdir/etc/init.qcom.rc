@@ -52,3 +52,7 @@ on boot
     # cpu-boost
     chown system system /sys/module/cpu_boost/parameters/input_boost_ms
     chmod 664 /sys/module/cpu_boost/parameters/input_boost_ms
+
+    # reset on suspend
+    chown system system /sys/class/input/input0/reset_on_suspend
+    chmod 664 /sys/class/input/input0/reset_on_suspend
