@@ -28,11 +28,12 @@ import android.preference.SwitchPreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import org.namelessrom.device.extra.hardware.ColorEnhancement;
+import org.namelessrom.device.extra.hardware.ResetOnSuspend;
+
 @SuppressWarnings("deprecation")
 public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
     private static final String CATEGORY_INFO = "cat_info";
-
-    private static final String KEY_COLOR_ENHANCEMENT = "color_enhancement";
 
     private static final String KEY_INFO_DEVICE = "info_device";
     private static final String KEY_INFO_STORAGE_LAYOUT = "info_storage_layout";
@@ -55,6 +56,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     private static final String VALUE_FIND7_S = "find7s";
 
     private SwitchPreference mColorEnhancement;
+    private SwitchPreference mResetOnSuspend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +68,19 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mColorEnhancement = (SwitchPreference) findPreference(KEY_COLOR_ENHANCEMENT);
+        mColorEnhancement = (SwitchPreference) findPreference(ColorEnhancement.TAG);
         if (ColorEnhancement.isSupported()) {
             mColorEnhancement.setOnPreferenceChangeListener(this);
         } else {
             mColorEnhancement.setEnabled(false);
+        }
+
+        mResetOnSuspend = (SwitchPreference) findPreference(ResetOnSuspend.TAG);
+        if (ResetOnSuspend.isSupported()) {
+            mResetOnSuspend.setChecked(ResetOnSuspend.isEnabled());
+            mResetOnSuspend.setOnPreferenceChangeListener(this);
+        } else {
+            mResetOnSuspend.setEnabled(false);
         }
 
         final PreferenceCategory catInfo = (PreferenceCategory) findPreference(CATEGORY_INFO);
@@ -180,6 +190,10 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         if (preference == mColorEnhancement) {
             boolean value = (Boolean) o;
             ColorEnhancement.setColorEnhancement(this, value);
+            return true;
+        } else if (preference == mResetOnSuspend) {
+            boolean value = (Boolean) o;
+            ResetOnSuspend.setEnabled(this, value);
             return true;
         }
 

@@ -16,11 +16,13 @@
  * -->
  */
 
-package org.namelessrom.device.extra;
+package org.namelessrom.device.extra.hardware;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import org.namelessrom.device.extra.FileUtils;
 
 public class ColorEnhancement {
     public static final String TAG = "color_enhancement";
@@ -31,8 +33,8 @@ public class ColorEnhancement {
 
     public static boolean isSupported() {
         return FileUtils.fileExists(KCAL_SAT)
-                && FileUtils.fileExists(KCAL_VAL)
-                && FileUtils.fileExists(KCAL_CONT);
+               && FileUtils.fileExists(KCAL_VAL)
+               && FileUtils.fileExists(KCAL_CONT);
     }
 
     public static void setColorEnhancement(Context context, boolean enable) {

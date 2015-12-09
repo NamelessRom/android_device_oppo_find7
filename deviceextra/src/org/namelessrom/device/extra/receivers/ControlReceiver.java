@@ -23,7 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import org.namelessrom.device.extra.ColorEnhancement;
+import org.namelessrom.device.extra.hardware.ColorEnhancement;
 
 public class ControlReceiver extends BroadcastReceiver {
     private static final String ACTION_CONTROL = "org.namelessrom.device.extra.ACTION_CONTROL";

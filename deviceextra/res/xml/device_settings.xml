@@ -25,6 +25,13 @@
         android:summary="@string/color_enhancement_summary"
         android:title="@string/color_enhancement" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="reset_on_suspend"
+        android:persistent="true"
+        android:summary="@string/reset_on_suspend_summary"
+        android:title="@string/reset_on_suspend" />
+
     <PreferenceCategory
         android:key="cat_info"
         android:title="@string/information">

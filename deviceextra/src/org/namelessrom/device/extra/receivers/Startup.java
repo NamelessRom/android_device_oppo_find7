@@ -24,7 +24,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.namelessrom.device.extra.ColorEnhancement;
+import org.namelessrom.device.extra.hardware.ColorEnhancement;
+import org.namelessrom.device.extra.hardware.ResetOnSuspend;
 
 public class Startup extends BroadcastReceiver {
     @Override
@@ -40,6 +41,10 @@ public class Startup extends BroadcastReceiver {
         // restore color enhancement
         boolean useColorEnhancement = prefs.getBoolean(ColorEnhancement.TAG, true);
         ColorEnhancement.setColorEnhancement(context, useColorEnhancement);
+
+        // restore reset on suspend
+        boolean useResetOnSuspend = prefs.getBoolean(ResetOnSuspend.TAG, false);
+        ResetOnSuspend.setEnabled(context, useResetOnSuspend);
     }
 
 }
