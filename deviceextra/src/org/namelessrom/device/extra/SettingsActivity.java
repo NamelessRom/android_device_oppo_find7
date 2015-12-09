@@ -38,11 +38,13 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     private static final String KEY_INFO_STORAGE_LAYOUT = "info_storage_layout";
     private static final String KEY_INFO_PCB_VERSION = "info_pcb_version";
     private static final String KEY_INFO_RF_VERSION = "info_rf_version";
+    private static final String KEY_INFO_PANEL_TYPE = "info_panel_type";
 
     private static final String PROP_DEVICE = "ro.oppo.device";
     private static final String PROP_STORAGE_LAYOUT = "ro.oppo.layout";
     private static final String PROP_PCB_VERSION = "ro.oppo.pcb_version";
     private static final String PROP_RF_VERSION = "ro.oppo.rf_version";
+    private static final String PROP_PANEL_TYPE = "ro.oppo.panel";
 
     private static final String VALUE_UNKNOWN = "-";
     private static final String VALUE_LVM = "lvm";
@@ -138,6 +140,27 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             catInfo.removePreference(infoRf);
         } else {
             infoRf.setSummary(tmp);
+        }
+
+        // extract panel type from cmdline
+        final Preference infoPanelType = findPreference(KEY_INFO_PANEL_TYPE);
+        tmp = SystemProperties.get(PROP_PANEL_TYPE, VALUE_UNKNOWN);
+        if (TextUtils.isEmpty(tmp) || VALUE_UNKNOWN.equals(tmp)) {
+            catInfo.removePreference(infoPanelType);
+        } else {
+            // expected to get something like
+            // 1:dsi:0:qcom,dsi_jdi_1440p_video_0:1:qcom,dsi_jdi_1440p_video_1
+            String[] tmpArray = tmp.split(":");
+            if (tmpArray.length >= 4) {
+                // get the "qcom,dsi_jdi_1440p_video_0" part ...
+                tmp = tmpArray[3];
+                // ... remove "qcom," ...
+                tmp = tmp.replace("qcom,", "");
+                // ... and if possible also the "_0"
+                tmp = tmp.replace("_0", "");
+            }
+            // set the panel type or the whole string if above code did not work
+            infoPanelType.setSummary(tmp);
         }
     }
 

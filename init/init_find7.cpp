@@ -140,8 +140,10 @@ static void import_kernel_nv(char *name, __unused int for_emulator)
             property_set("ro.sf.lcd_density.override", "480");
             set_xxhdpi_properties();
         }
-    } else if (!strcmp(name,"oppo.rf_version")) {
+    } else if (!strcmp(name, "oppo.rf_version")) {
         property_set("ro.oppo.rf_version", value);
+    } else if (!strcmp(name, "mdss_mdp.panel")) {
+        property_set("ro.oppo.panel", value);
     }
 }
 

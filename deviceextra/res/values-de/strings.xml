@@ -22,6 +22,7 @@
   <string name="information">Informationen</string>
   <string name="device">Modell</string>
   <string name="storage_layout">Speicherlayout</string>
+  <string name="panel_type">Panel-Typ</string>
   <string name="pcb_version">PCB-Version</string>
   <string name="rf_version">RF-Version</string>
 </resources>

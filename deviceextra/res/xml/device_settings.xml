@@ -40,6 +40,11 @@
             tools:summary="@string/storage_layout_unified" />
 
         <Preference
+            android:key="info_panel_type"
+            android:title="@string/panel_type"
+            tools:summary="dsi_jdi_1440p_video" />
+
+        <Preference
             android:key="info_pcb_version"
             android:title="@string/pcb_version"
             tools:summary="22" />
