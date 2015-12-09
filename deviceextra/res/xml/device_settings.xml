@@ -14,13 +14,41 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <SwitchPreference
-        android:key="color_enhancement"
-        android:title="@string/color_enhancement"
-        android:summary="@string/color_enhancement_summary"
         android:defaultValue="true"
-        android:persistent="true" />
+        android:key="color_enhancement"
+        android:persistent="true"
+        android:summary="@string/color_enhancement_summary"
+        android:title="@string/color_enhancement" />
+
+    <PreferenceCategory
+        android:key="cat_info"
+        android:title="@string/information">
+
+        <Preference
+            android:key="info_device"
+            android:title="@string/device"
+            tools:summary="@string/device_find7_s" />
+
+        <Preference
+            android:key="info_storage_layout"
+            android:title="@string/storage_layout"
+            tools:summary="@string/storage_layout_unified" />
+
+        <Preference
+            android:key="info_pcb_version"
+            android:title="@string/pcb_version"
+            tools:summary="22" />
+
+        <Preference
+            android:key="info_rf_version"
+            android:title="@string/rf_version"
+            tools:summary="12" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
