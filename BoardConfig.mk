@@ -35,7 +35,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_SPECIFIC_HEADER_PATH += device/oppo/find7/include
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/oppo/find7/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := custom_find7_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
@@ -82,10 +81,10 @@ endif
 # SELinux policies
 BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
 
-# inherit from the proprietary version
--include vendor/oppo/find7/BoardConfigVendor.mk
--include vendor/oppo/find7-common/BoardConfigVendor.mk
-
 RED_LED_PATH := "/sys/class/leds/led:rgb_red/brightness"
 GREEN_LED_PATH := "/sys/class/leds/led:rgb_green/brightness"
 BLUE_LED_PATH := "/sys/class/leds/led:rgb_blue/brightness"
+
+# inherit from the proprietary version
+-include vendor/oppo/find7/BoardConfigVendor.mk
+-include vendor/oppo/find7-common/BoardConfigVendor.mk

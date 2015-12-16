@@ -48,6 +48,13 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
 
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.target.rc \
+    twrp.fstab.lvm \
+    twrp.fstab.std \
+    twrp.fstab.ufd \
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
