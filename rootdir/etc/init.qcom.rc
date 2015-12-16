@@ -56,3 +56,6 @@ on boot
     # reset on suspend
     chown system system /sys/class/input/input0/reset_on_suspend
     chmod 664 /sys/class/input/input0/reset_on_suspend
+
+    # set vibration to a sane value
+    write /sys/class/timed_output/vibrator/vtg_level 28
