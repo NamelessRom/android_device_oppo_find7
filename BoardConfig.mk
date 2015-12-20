@@ -39,6 +39,9 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user
 TARGET_KERNEL_CONFIG := custom_find7_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
+# Audio
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
 
@@ -46,25 +49,21 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oppo/find7/bluetooth
 USE_DEVICE_SPECIFIC_CAMERA := true
 COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 
-# Audio
-AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+# Power
+TARGET_POWERHAL_VARIANT := find7
 
 # Setupwizard
 BOARD_SETUP_WIZARD_CLASS     := device/oppo/find7/setupwizard/src
 BOARD_SETUP_WIZARD_RESOURCES += device/oppo/find7/setupwizard/res
 
-# Power
-TARGET_POWERHAL_VARIANT := find7
+### RECOVERY START
+RECOVERY_VARIANT := twrp
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := FIND7,find7,find7u,find7a,find7au,find7s,find7su
 
 # Dummy
 TARGET_RECOVERY_FSTAB := device/oppo/find7/rootdir/etc/fstab.qcom
-
-ifeq ($(TARGET_BUILD_TWRP),true)
-# Recovery
-RECOVERY_VARIANT := twrp
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -75,8 +74,7 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-
-endif
+### RECOVERY END
 
 # SELinux policies
 BOARD_SEPOLICY_DIRS += device/oppo/find7/sepolicy
