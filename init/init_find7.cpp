@@ -1,6 +1,6 @@
 /*
    Copyright (c) 2014, The CyanogenMod Project
-   Copyright (c) 2014-2015, The NamelessRom Project
+   Copyright (c) 2014 - 2016, The NamelessRom Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -59,7 +59,7 @@
 
 static void set_xxhdpi_properties()
 {
-    NOTICE("Setting xxhdpi properties!");
+    NOTICE("Setting xxhdpi properties!\n");
 
     // dalvik
     property_set("dalvik.vm.heapstartsize", "16m");
@@ -85,7 +85,7 @@ static void set_xxhdpi_properties()
 
 static void set_xxxhdpi_properties()
 {
-    NOTICE("Setting xxxhdpi properties!");
+    NOTICE("Setting xxxhdpi properties!\n");
 
     // dalvik
     property_set("dalvik.vm.heapstartsize", "8m");
@@ -241,7 +241,7 @@ int do_exec_context(char * const command[])
     } else {
         waitpid(pid, &status, 0);
         if (WEXITSTATUS(status) != 0) {
-            ERROR("exec: pid %1d exited with return code %d: %s", (int)pid, WEXITSTATUS(status), strerror(status));
+            ERROR("exec: pid %1d exited with return code %d: %s\n", (int)pid, WEXITSTATUS(status), strerror(status));
         }
     }
     return 0;
@@ -312,13 +312,13 @@ int vendor_start_pre_init()
     }
     NOTICE("Waiting for %s took %.2fs.\n", USERDATA_PATH_UNIFIED, t.duration());
 
-    NOTICE("Scanning for LVM...");
+    NOTICE("Scanning for LVM...\n");
     scan_for_lvm();
 
-    NOTICE("Setting OPPO storage layout...");
+    NOTICE("Setting OPPO storage layout...\n");
     set_oppo_layout();
 
-    NOTICE("Alex and Marc are awesome");
+    NOTICE("Alex and Marc are awesome\n");
     return 0;
 }
 
