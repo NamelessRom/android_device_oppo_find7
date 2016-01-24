@@ -1,12 +1,12 @@
-# mount point   fstype    device    [device2]
+# device                                           mount_point     fstype  mount_flags                             fs_flags    twrp_flags
 
-/boot           emmc      /dev/block/platform/msm_sdcc.1/by-name/boot
-/recovery       emmc      /dev/block/platform/msm_sdcc.1/by-name/recovery
+/dev/block/platform/msm_sdcc.1/by-name/boot        /boot           emmc    defaults                                defaults
+/dev/block/platform/msm_sdcc.1/by-name/recovery    /recovery       emmc    defaults                                defaults
 
-/cache          ext4      /dev/block/platform/msm_sdcc.1/by-name/cache
-/data           ext4      /dev/block/platform/msm_sdcc.1/by-name/userdata length=-16384
-/system         ext4      /dev/block/platform/msm_sdcc.1/by-name/system
+/dev/block/platform/msm_sdcc.1/by-name/cache       /cache          ext4    noatime,nosuid,nodev                    defaults
+/dev/block/platform/msm_sdcc.1/by-name/userdata    /data           ext4    noatime,nosuid,nodev,noauto_da_alloc    defaults    twrp=encryptable=footer;length=-16384
+/dev/block/platform/msm_sdcc.1/by-name/system      /system         ext4    noatime                                 defaults
 
-/internal_sd    ext4      /dev/block/platform/msm_sdcc.1/by-name/sdcard
-/external_sd    vfat      /dev/block/mmcblk1p1                           /dev/block/mmcblk1
-/usb-otg        vfat      /dev/block/sda1                                /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
+/dev/block/platform/msm_sdcc.1/by-name/sdcard      /sdcard         ext4    defaults                                defaults    twrp=display="Internal Storage";settingsstorage
+/dev/block/mmcblk1p1                               /external_sd    auto    defaults                                defaults    twrp=display="Micro SDcard";storage;wipeingui;removable
+/dev/block/sda1                                    /usb-otg        auto    defaults                                defaults    twrp=display="USB-OTG";storage;wipeingui;removable
