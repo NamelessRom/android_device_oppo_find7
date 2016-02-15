@@ -119,6 +119,20 @@ static char *camera_fixup_getparams(int id, const char *settings)
                 android::CameraParameters::KEY_RECORDING_HINT), "true"));
     }
 
+    /* Remove unsupported features */
+    params.remove("af-bracket");
+    params.remove("af-bracket-values");
+    params.remove("chroma-flash");
+    params.remove("chroma-flash-values");
+    params.remove("dis");
+    params.remove("dis-values");
+    params.remove("opti-zoom");
+    params.remove("opti-zoom-values");
+    params.remove("see-more");
+    params.remove("see-more-values");
+    params.remove("still-more");
+    params.remove("still-more-values");
+
     if (videoMode) {
         /* Back camera */
         if (id == 0) {
@@ -128,7 +142,9 @@ static char *camera_fixup_getparams(int id, const char *settings)
             sprintf(tmpsz, "3840x2160,%s", videoSizesStr);
             params.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES, tmpsz);
         }
-    } else {
+    }
+
+    if (!videoMode) {
         /* Back camera */
         if (id == 0) {
             /* Set supported exposure time values */
@@ -140,6 +156,10 @@ static char *camera_fixup_getparams(int id, const char *settings)
             /* Remove HDR scene mode */
             params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
                     supportedSceneModes);
+
+            /* Remove ISO */
+            params.remove("iso");
+            params.remove("iso-values");
         }
     }
 
