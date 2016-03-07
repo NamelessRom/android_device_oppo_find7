@@ -87,9 +87,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8974
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.deep_buffer.media=true
-
 # Reduce client buffer size for fast audio output tracks
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1
