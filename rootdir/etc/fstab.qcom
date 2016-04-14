@@ -14,3 +14,5 @@
 /devices/msm_sdcc.1/mmc_host/*/mmcblk0           auto    ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,nodelalloc,uid=1023,gid=1023,dmask=0007,fmask=0007,ignore_case=1 voldmanaged=sdcard0:29,nonremovable,noemulatedsd
 /devices/msm_sdcc.2/mmc_host/mmc1*               auto            auto    defaults voldmanaged=sdcard1:auto,noemulatedsd,encryptable=userdata
 /devices/platform/xhci-hcd*                      auto            auto    defaults voldmanaged=usb:auto
+
+/dev/block/zram0                                 none            swap    defaults zramsize=533413200,zramstreams=4,notrim

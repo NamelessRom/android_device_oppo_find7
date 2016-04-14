@@ -21,11 +21,14 @@ on fs
     restorecon /dev/mapper/lvpool-userdata
 
     mount_all /fstab.qcom
+    swapon_all /fstab.qcom
 
 on init
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
+
+    write /proc/sys/vm/page-cluster 0
 
 on post-fs-data
     # Torch
