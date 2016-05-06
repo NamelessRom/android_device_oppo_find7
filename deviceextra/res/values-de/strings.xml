@@ -18,7 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Find 7 Einstellungen</string>
   <string name="color_enhancement">Farbverbesserung aktivieren</string>
-  <string name="color_enhancement_summary">Heben Sie ihr Find7 durch ein wunderschönes Display von der Masse ab</string>
+  <string name="color_enhancement_summary">Heben Sie Ihr Find 7 durch ein wunderschönes Display von der Masse ab</string>
   <string name="information">Informationen</string>
   <string name="device">Modell</string>
   <string name="storage_layout">Speicherlayout</string>

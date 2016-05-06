@@ -18,7 +18,7 @@
     <string name="app_name">Find 7 settings</string>
 
     <string name="color_enhancement">Use color enhancement</string>
-    <string name="color_enhancement_summary">Make your Find7 stand out from the masses with a beautiful display</string>
+    <string name="color_enhancement_summary">Make your Find 7 stand out from the masses with a beautiful display</string>
 
     <string name="reset_on_suspend">Reset on suspend</string>
     <string name="reset_on_suspend_summary">Reset the input device when suspending to workaround degraded touch panel sensitivity</string>
