@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Find7 подешавања</string>
   <string name="color_enhancement">Користи побољшање боја</string>
-  <string name="color_enhancement_summary">Нека се ваш Find7 разликује од других са предивним екраном.</string>
+  <string name="device">Уређај</string>
 </resources>

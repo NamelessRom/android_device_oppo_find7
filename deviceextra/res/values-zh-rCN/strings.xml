@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Find7 设置</string>
   <string name="color_enhancement">使用色彩增强</string>
-  <string name="color_enhancement_summary">用美丽的显示效果使你的Find7鹤立鸡群。</string>
+  <string name="device">设备</string>
 </resources>

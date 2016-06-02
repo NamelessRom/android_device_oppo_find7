@@ -16,6 +16,5 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="color_enhancement">Melhoria de cores</string>
-  <string name="device">Dispositivo</string>
+  <string name="device">裝置:</string>
 </resources>

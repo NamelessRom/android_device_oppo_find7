@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Impostazioni Find7</string>
   <string name="color_enhancement">Usa miglioramento colori</string>
-  <string name="color_enhancement_summary">Fai in modo che il tuo Find7 si distingua dalla massa con un magnifico display.</string>
+  <string name="device">Dispositivo</string>
 </resources>

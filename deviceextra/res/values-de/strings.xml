@@ -19,9 +19,11 @@
   <string name="app_name">Find 7 Einstellungen</string>
   <string name="color_enhancement">Farbverbesserung aktivieren</string>
   <string name="color_enhancement_summary">Heben Sie Ihr Find 7 durch ein wunderschönes Display von der Masse ab</string>
+  <string name="reset_on_suspend">Automatisches Zurücksetzen</string>
+  <string name="reset_on_suspend_summary">Setzt den Touchscreen zurück, wenn der Bildschirm ausgeschaltet wird, um die Touchscreen-Empfindlichkeit zu verbessern</string>
   <string name="information">Informationen</string>
-  <string name="device">Modell</string>
-  <string name="storage_layout">Speicherlayout</string>
+  <string name="device">Gerät</string>
+  <string name="storage_layout">Speicher-Layout</string>
   <string name="panel_type">Panel-Typ</string>
   <string name="pcb_version">PCB-Version</string>
   <string name="rf_version">RF-Version</string>
