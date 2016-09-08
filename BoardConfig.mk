@@ -22,6 +22,9 @@ include device/oppo/msm8974-common/BoardConfigCommon.mk
 TARGET_INIT_VENDOR_LIB := libinit_find7
 TARGET_NEEDS_PRE_INIT := true
 
+# Properties
+TARGET_SYSTEM_PROP += device/oppo/find7/system.prop
+
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
 BOARD_CACHEIMAGE_PARTITION_SIZE    := 536870912
